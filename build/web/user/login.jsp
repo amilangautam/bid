@@ -46,7 +46,7 @@
                 
                 }
               %>
-            <p class="text-center"><a href="register.jsp">Create an Account</a></p>
+              <p class="text-center" ><a href="register.jsp">Create an Account</a></p>
            
         </div>
        

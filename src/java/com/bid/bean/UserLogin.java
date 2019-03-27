@@ -13,6 +13,7 @@ public class UserLogin {
     private int user_id;
     private String firstname;
     private String lastname;
+    private String address;
     private String email;
     private String mobile;
     private String password;
@@ -41,6 +42,14 @@ public class UserLogin {
         this.lastname = lastname;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -66,6 +75,9 @@ public class UserLogin {
     public void setPassword(String password) {
         this.password = password;
     }
+
+   
+    
     
     
 }

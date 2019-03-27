@@ -1,9 +1,9 @@
 <%-- 
-    Document   : loginProcess
-    Created on : Mar 26, 2019, 12:48:07 PM
+    Document   : adminLoginProcess
+    Created on : Mar 27, 2019, 9:20:50 AM
     Author     : 97798
-
 --%>
+
 <%@page import="com.bid.bean.UserLogin,com.bid.dao.UserLoginDao" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,15 +17,16 @@
         <jsp:setProperty property="*" name="b"></jsp:setProperty>
         <%
           UserLoginDao obj_UserLoginDao = new UserLoginDao();
-         // boolean flag = obj_UserLoginDao.check_user(b);
-         String role = obj_UserLoginDao.check_admin(b);
-          if(role == "user_role"){
-              session.setAttribute("user_session",b);
-              response.sendRedirect("home.jsp");
+          
+          String rs = obj_UserLoginDao.check_admin(b);
+          if(rs=="admin_role"){
+              session.setAttribute("admin_session",b);
+              response.sendRedirect("dashboard.jsp");
           }else{
               session.setAttribute("msg", "Invalid Login!");
-              response.sendRedirect("login.jsp");
+              response.sendRedirect("adminLogin.jsp");
           }
         %>   
     </body>
 </html>
+

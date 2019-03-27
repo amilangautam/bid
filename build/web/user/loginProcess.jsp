@@ -17,8 +17,9 @@
         <jsp:setProperty property="*" name="b"></jsp:setProperty>
         <%
           UserLoginDao obj_UserLoginDao = new UserLoginDao();
-          boolean flag = obj_UserLoginDao.check_user(b);
-          if(flag){
+         // boolean flag = obj_UserLoginDao.check_user(b);
+         String role = obj_UserLoginDao.check_admin(b);
+          if(role == "user_role"){
               session.setAttribute("user_session",b);
               response.sendRedirect("home.jsp");
           }else{
