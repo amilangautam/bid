@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="com.bid.dao.ProductDao"%>
+<%@page import="com.bid.bean.Product"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Dashboard</title>
+  <title>Admin-Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,8 +48,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="dashboard.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+          <span>Product</span>
         </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="charts.jsp">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>User</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,11 +72,7 @@
           <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
@@ -75,63 +80,64 @@
       </li>
     </ul>
 
-     <!-- DataTables Example -->
+   <!-- product detail -->
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Charts</li>
+        </ol>
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Table Example</div>
+            Product Detail
+          </div>
           <div class="card-body">
             <div class="table-responsive">
+                  <%  
+                    List<Product> list=ProductDao.getAllRecords();
+                    request.setAttribute("list",list);  
+                    int count = 0;
+                  %>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>action</th>
-                  </tr>
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>CLose Date</th>
+                    <th>Initial price</th>
+                    <th>Action</th>
+                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${list}" var="u"> 
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                    <td>$320,800</td>
+                    <td>${u.getPid()}</td>
+                    <td>${u.getPname()}</td>
+                    <td><img src="../image/product/${u.getFilename()}" height="100" width="140" ></td>
+                    <td>${u.getCategory()}</td>
+                    <td>${u.getDescription()}</td>
+                    <td>${u.getDate()}</td>
+                    <td>${u.getInitialprice()}</td>
+                    <td><a href="editProduct.jsp?pid=${u.getPid()}">Edit</a>   <a href="deleteProductProcess.jsp?pid=${u.getPid()}">Delete</a> </td>
                   </tr>
-                  <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                    <td>$320,800</td>
-                  </tr>
-                </tbody>
+                </c:forEach>
+                 <tbody>
               </table>
             </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-
       </div>
       <!-- /.container-fluid -->
-
-      <!-- Sticky Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-
     </div>
     <!-- /.content-wrapper -->
 
@@ -150,7 +156,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true">�</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>

@@ -1,7 +1,3 @@
-<%@page import="java.util.List"%>
-<%@page import="com.bid.dao.ProductDao"%>
-<%@page import="com.bid.bean.Product"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin-Dashboard</title>
+  <title>SB Admin - Charts</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,14 +26,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="dashboard.jsp">Start Bootstrap</a>
-
-    
-
-    <!-- Navbar Search -->
-    
-
-
+    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
 
   </nav>
 
@@ -45,14 +34,14 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="dashboard.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Product</span>
         </a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="charts.jsp">
+      <li class="nav-item active">
+        <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
       </li>
@@ -72,7 +61,7 @@
           <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
       </li>
-     
+      
       <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
@@ -80,7 +69,6 @@
       </li>
     </ul>
 
-   <!-- product detail -->
     <div id="content-wrapper">
 
       <div class="container-fluid">
@@ -92,52 +80,35 @@
           </li>
           <li class="breadcrumb-item active">Charts</li>
         </ol>
+
+        <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-table"></i>
-            Product Detail
-          </div>
+            <i class="fas fa-chart-area"></i>
+            Area Chart Example</div>
           <div class="card-body">
-            <div class="table-responsive">
-                  <%  
-                    List<Product> list=ProductDao.getAllRecords();
-                    request.setAttribute("list",list);  
-                    int count = 0;
-                  %>
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Product Id</th>
-                    <th>Product Name</th>
-                    <th>Image</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>CLose Date</th>
-                    <th>Initial price</th>
-                    <th>Action</th>
-                   </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${list}" var="u"> 
-                  <tr>
-                    <td>${u.getPid()}</td>
-                    <td>${u.getPname()}</td>
-                    <td><img src="../image/product/${u.getFilename()}" height="100" width="140" ></td>
-                    <td>${u.getCategory()}</td>
-                    <td>${u.getDescription()}</td>
-                    <td>${u.getDate()}</td>
-                    <td>${u.getInitialprice()}</td>
-                    <td><a href="editProduct.jsp?pid=${u.getPid()}">Edit</a>   <a href="deleteProductProcess.jsp?pid=${u.getPid()}">Delete</a> </td>
-                  </tr>
-                </c:forEach>
-                 <tbody>
-              </table>
-            </div>
+            <canvas id="myAreaChart" width="100%" height="30"></canvas>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-chart-bar"></i>
+                Bar Chart Example</div>
+              <div class="card-body">
+                <canvas id="myBarChart" width="100%" height="50"></canvas>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+          </div>
+      </div>
+
       </div>
       <!-- /.container-fluid -->
+
     </div>
     <!-- /.content-wrapper -->
 
@@ -156,7 +127,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true">Ã—</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -177,15 +148,14 @@
 
   <!-- Page level plugin JavaScript-->
   <script src="../vendor/chart.js/Chart.min.js"></script>
-  <script src="..vendor/datatables/jquery.dataTables.js"></script>
-  <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="javascript/sb-admin.min.js"></script>
 
   <!-- Demo scripts for this page-->
-  <script src="../javascript/demo/datatables-demo.js"></script>
   <script src="../javascript/demo/chart-area-demo.js"></script>
+  <script src="../javascript/demo/chart-bar-demo.js"></script>
+  <script src="../javascript/demo/chart-pie-demo.js"></script>
 
 </body>
 
