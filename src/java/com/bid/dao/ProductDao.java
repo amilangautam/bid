@@ -33,7 +33,7 @@ public class ProductDao {
         int status = 0;
         try {
             Connection conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("insert into product (pname , category  , description, initialprice, date ,filename ) values(?,?,?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("insert into product (pname , category  , description, initialprice, date ,filename,path ) values(?,?,?,?,?,?,?)");
             
             //ps.setString(1,b.getEmail());
             ps.setString(1, p.getPname());
@@ -42,6 +42,7 @@ public class ProductDao {
             ps.setString(4, p.getInitialprice());
             ps.setString(5, p.getDate());
             ps.setString(6, p.getFilename());
+            ps.setString(7, p.getPath());
              
             status = ps.executeUpdate();
                  

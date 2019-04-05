@@ -17,6 +17,7 @@ public class Product {
     private String initialprice;
     private String filename;
     private String date;
+    private String path;
 
     public int getPid() {
         return pid;
@@ -72,6 +73,14 @@ public class Product {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
     
     

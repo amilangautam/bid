@@ -41,12 +41,12 @@
                             /* Get the size of the uploaded file in bytes. G:\PROJECT\bid\build\web\image\product*/
                             long fileSize = item.getSize();
                             if (fileSize <= 9000000) {
-                                type = "." + type.substring(type.lastIndexOf("/") + 1);
-                                name = name + type;
-                                String path = getServletContext().getRealPath("/");
-                                item.write(new File(path + "image/product" + File.separator + name));
+                                
+                                String path =  "G:/PROJECT/bid/web/image/product"  + "/" + name;
+                                item.write(new File(path));
 
                               //  info.setItImage(nsame);
+                              info.setPath(path);
                               info.setFilename(name);
                             } else {
                                 session.setAttribute("error_code", "404");
