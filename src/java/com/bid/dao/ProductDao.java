@@ -114,7 +114,7 @@ public class ProductDao {
         }
     //view product
          
-  //delete by admin
+  //delete product by admin
     public static int deleteProduct(Product p){  
     int status=0;  
     try{  

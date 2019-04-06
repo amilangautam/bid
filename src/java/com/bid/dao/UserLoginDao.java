@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -99,8 +101,100 @@ public class UserLoginDao {
     }  
 //finished checking user type    
 
+ 
+    public static List <UserLogin> getAllRecordsOfUser(){
+        List<UserLogin> list = new ArrayList<UserLogin>();
+        try {
+                Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("select * from user");
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    
+                UserLogin b = new UserLogin();
+                b.setUser_id(rs.getInt("user_id"));
+                b.setFirstname(rs.getString("firstname"));
+                b.setLastname(rs.getString("lastname"));
+                b.setEmail(rs.getString("email"));
+                b.setMobile(rs.getString("mobile"));
+                b.setPassword(rs.getString("password"));
+                b.setRole(rs.getString("role"));
+                b.setRegistered_date(rs.getString("registered_date"));
+                list.add(b);
+                
+                }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+        
+     public static UserLogin getRecordById(int user_id){
+        UserLogin b= null;
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("select * from user where user_id = ?");
+                ps.setInt(1,user_id);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                b.setUser_id(rs.getInt("user_id"));
+                b.setFirstname(rs.getString("firstname"));
+                b.setLastname(rs.getString("lastname"));
+                b.setEmail(rs.getString("email"));
+                b.setMobile(rs.getString("mobile"));
+                b.setPassword(rs.getString("password"));  
+                b.setRole(rs.getString("role"));
+               
+                    } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return b;
+        }
+    //view product
+     
+     
+   //delete user by admin
+    public static int deleteUser(UserLogin b){  
+    int status=0;  
+    try{  
+        Connection conn=getConnection();  
+        PreparedStatement ps=conn.prepareStatement("delete from user where user_id=?");  
+        ps.setInt(1, b.getUser_id());  
+        status=ps.executeUpdate();  
+    }catch(Exception e){
+        System.out.println(e);}  
+  
+    return status;  
+}
+    //delete user finished
 
-
+    
+    
+    
+    //edit user by admin start
+    
+    //update
+    public static int editUserByAdmin(UserLogin b){  
+    int status=0;  
+    try{  
+        Connection conn=getConnection();  
+        PreparedStatement ps=conn.prepareStatement("update user set firstname =? , lastname= ? ,address =? , email =?, mobile = ? ,password = ?, role = ? where user_id=? ");  
+          
+            ps.setString(1, b.getFirstname());
+            ps.setString(2,b.getLastname());
+            ps.setString(3,b.getAddress());
+            ps.setString(4,b.getEmail());
+            ps.setString(5,b.getMobile());
+            ps.setString(6,b.getPassword());
+            ps.setString(7,b.getRole());
+            ps.setInt(8,b.getUser_id());
+            
+        status=ps.executeUpdate();  
+    }catch(Exception e){System.out.println(e);}  
+    return status;  
+} 
+    //edit user by admin finished
         
     //check email and password
 //    public boolean check_user(UserLogin b){

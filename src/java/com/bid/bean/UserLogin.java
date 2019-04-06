@@ -17,6 +17,9 @@ public class UserLogin {
     private String email;
     private String mobile;
     private String password;
+    private String registered_date;
+    private String role;
+    
 
     public int getUser_id() {
         return user_id;
@@ -75,6 +78,23 @@ public class UserLogin {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRegistered_date() {
+        return registered_date;
+    }
+
+    public void setRegistered_date(String registered_date) {
+        this.registered_date = registered_date;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
 
    
     

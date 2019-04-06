@@ -29,21 +29,11 @@
 <body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
     <a class="navbar-brand mr-1" href="dashboard.jsp">Start Bootstrap</a>
-
-    
-
-    <!-- Navbar Search -->
-    
-
-
-
   </nav>
 
   <div id="wrapper">
-
-    <!-- Sidebar -->
+  <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="dashboard.jsp">
@@ -52,7 +42,7 @@
         </a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="charts.jsp">
+        <a class="nav-link" href="viewUser.jsp">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
       </li>
@@ -72,20 +62,20 @@
           <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
       </li>
-     
       <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
     </ul>
-
    <!-- product detail -->
-    <div id="content-wrapper">
-
-      <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
+   
+   
+   
+  <!-- main body start -->
+   <div id="content-wrapper">
+     <div class="container-fluid">
+     <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
@@ -139,17 +129,22 @@
       </div>
       <!-- /.container-fluid -->
     </div>
-    <!-- /.content-wrapper -->
-
-  </div>
+ <!-- main body finisehed -->
+              
+              
+ 
+ <!-- /.content-wrapper -->
+ </div>
   <!-- /#wrapper -->
+  
+  
+  
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
+ <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -167,7 +162,6 @@
       </div>
     </div>
   </div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

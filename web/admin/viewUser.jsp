@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="com.bid.dao.UserLoginDao"%>
+<%@page import="com.bid.bean.UserLogin"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,8 +35,7 @@
   </nav>
 
   <div id="wrapper">
-
-    <!-- Sidebar -->
+<!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="dashboard.jsp">
@@ -41,7 +44,7 @@
         </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="viewUser.jsp">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
       </li>
@@ -68,49 +71,74 @@
           <span>Tables</span></a>
       </li>
     </ul>
+<!-- side bar finished-->
 
-    <div id="content-wrapper">
 
-      <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
+<!-- main body start-->
+   <div id="content-wrapper">
+     <div class="container-fluid">
+     <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Charts</li>
+          <li class="breadcrumb-item active">User</li>
         </ol>
-
-        <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
+            <i class="fas fa-table"></i>
+            User Detail
+          </div>
           <div class="card-body">
-            <canvas id="myAreaChart" width="100%" height="30"></canvas>
+            <div class="table-responsive">
+              <% List <UserLogin> list = UserLoginDao.getAllRecordsOfUser();
+                 request.setAttribute("list",list); 
+              %>
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>User Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>mobile</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th>Registered Date</th>
+                    <th>Action</th>
+                   </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${list}" var="u"> 
+                  <tr>
+                    <td>${u.getUser_id()}</td>
+                    <td>${u.getFirstname()}</td>
+                    <td>${u.getLastname()}</td>
+                    <td>${u.getEmail()}</td>
+                    <td>${u.getMobile()}</td>
+                    <td>${u.getPassword()}</td>
+                    <td>${u.getRole()}</td>
+                    <td>${u.getRegistered_date()}</td>
+                    <td><a href="editUser.jsp?user_id=${u.getUser_id()}">Edit</a>  <a href="deleteUserProcess.jsp?user_id=${u.getUser_id()}">Delete</a> </td>
+                    
+                  </tr>
+                </c:forEach>
+                 <tbody>
+              </table>
+            </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="card mb-3">
-              <div class="card-header">
-                <i class="fas fa-chart-bar"></i>
-                Bar Chart Example</div>
-              <div class="card-body">
-                <canvas id="myBarChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-            </div>
-          </div>
-      </div>
-
       </div>
       <!-- /.container-fluid -->
-
     </div>
-    <!-- /.content-wrapper -->
+<!-- main body finished-->
+
+
+
+
+
 
   </div>
   <!-- /#wrapper -->
