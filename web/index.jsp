@@ -2,7 +2,12 @@
     Document   : index
     Created on : Mar 26, 2019, 10:45:03 AM
     Author     : 97798
+https://bootsnipp.com/snippets/O5yMd
 --%>
+<%@page import="java.util.List"%>
+<%@page import="com.bid.dao.ProductDao"%>
+<%@page import="com.bid.bean.Product"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/indexProduct.css">
         <script src="bootstrap/css/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
@@ -45,5 +51,38 @@
               </div>
             </nav>
         </div>
+ <div class="container">
+     <h1></h1>
+                   <%  
+                    List<Product> list=ProductDao.getAllRecords();
+                    request.setAttribute("list",list);  
+                    int count = 0;
+                  %>
+    <div class="row">
+        <c:forEach items="${list}" var="u">
+            <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">
+            <div class="product-grid4" style="border: 1px solid black">
+                <div class="product-image4">
+                    <a href="#">
+                        <img class="pic-1" src="image/product/${u.getFilename()}" height="180" width="200">
+                    </a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">${u.getPname()}</a></h3>
+                    <h3 class="title">Category:<a href="#">${u.getCategory()}</a></h3>
+                    <h3 class="title">Close Date:${u.getDate()}</h3>
+                    <div class="price">
+                     Initial Price:   ${u.getInitialprice()}
+                    </div>
+                    <a class="add-to-cart" href="">BID</a>
+                </div>
+            </div>
+        </div>
+        </c:forEach>
+
+        
+    </div>
+</div>
+<hr>
     </body>
 </html>
