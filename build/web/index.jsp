@@ -74,7 +74,7 @@ https://bootsnipp.com/snippets/O5yMd
                     <div class="price">
                      Initial Price:   ${u.getInitialprice()}
                     </div>
-                    <a class="add-to-cart" href="">BID</a>
+                    <a class="add-to-cart" href="visitor/viewProduct.jsp?pid=${u.getPid()}">BID</a>
                 </div>
             </div>
         </div>

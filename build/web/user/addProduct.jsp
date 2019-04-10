@@ -29,10 +29,11 @@
                 Product Category:<select class="form-control" name="category">
                             <option value="Books">Books</option>
                             <option value="Electronoics">Electronics</option>
-                            <option value="Beauty and Cosmetics">Beauty and Cosmetics</option>
-                            <option value="Health and Personal Care">Health and Personal Care</option>
+                            <option value="Beauty">Beauty</option>
+                            <option value="Health">Health</option>
                             <option value="Houseware">Housewares</option>
-                            <option value="Clothing and Fashion">Clothing and Fashion</option>
+                            <option value="Clothing">Clothing</option>
+                             <option value="Fashion">fashiion</option>
                          </select>
                 </div>
                 <div class="form-group">

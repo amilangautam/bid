@@ -28,6 +28,7 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/userHomeCard.css">
 
 </head>
 
@@ -98,66 +99,40 @@
     </ul>
    <!-- product detail -->
    
-   
-   
-  <!-- main body start -->
-   <div id="content-wrapper">
-     <div class="container-fluid">
-     <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Product</li>
-        </ol>
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fas fa-table"></i>
-            Product Detail
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-                  <%  
+   <%-- main body start --%>
+   <div class="container">
+     <h1></h1>
+                   <%  
                     List<Product> list=ProductDao.getAllRecords();
                     request.setAttribute("list",list);  
                     int count = 0;
                   %>
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Product Id</th>
-                    <th>Product Name</th>
-                    <th>Image</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>CLose Date</th>
-                    <th>Initial price</th>
-                    <th>Action</th>
-                   </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${list}" var="u"> 
-                  <tr>
-                    <td>${u.getPid()}</td>
-                    <td>${u.getPname()}</td>
-                    <td><img src="../image/product/${u.getFilename()}" height="100" width="140" ></td>
-                    <td>${u.getCategory()}</td>
-                    <td>${u.getDescription()}</td>
-                    <td>${u.getDate()}</td>
-                    <td>${u.getInitialprice()}</td>
-                    <td><a href="">Bid</a> </td>
-                  </tr>
-                </c:forEach>
-                 <tbody>
-              </table>
+    <div class="row">
+        <c:forEach items="${list}" var="u">
+            <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">
+            <div class="product-grid4" style="border: 1px solid black">
+                <div class="product-image4">
+                    <a href="#">
+                        <img class="pic-1" src="../image/product/${u.getFilename()}" height="180" width="200">
+                    </a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">${u.getPname()}</a></h3>
+                    <h3 class="title">Category:<a href="#">${u.getCategory()}</a></h3>
+                    <h3 class="title">Close Date:${u.getDate()}</h3>
+                    <div class="price">
+                     Initial Price:   ${u.getInitialprice()}
+                    </div>
+                    <a class="add-to-cart" href="productDescription.jsp?pid=${u.getPid()}">BID</a>
+                </div>
             </div>
-          </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-      </div>
-      <!-- /.container-fluid -->
+        </c:forEach>
+
+        
     </div>
- <!-- main body finisehed -->
+</div>
+   <!-- main body finisehed -->
               
               
  
