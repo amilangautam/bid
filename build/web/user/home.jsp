@@ -3,6 +3,7 @@
     Created on : Mar 26, 2019, 11:36:10 AM
     Author     : 97798
 --%>
+<%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
 <%@page import="com.bid.bean.Product"%>
@@ -29,15 +30,32 @@
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/userHomeCard.css">
+  <style>
+      .addProduct{
+          color: white; position: absolute;left: 223px;text-decoration: none;
+          
+      }
+      .addProduct:hover{
+          color: rgba(255, 255, 255, 0.75);
+          text-decoration: none;
+      }
+  </style>
 
 </head>
 
 <body id="page-top">
+    <%
+       UserLogin us = (UserLogin)session.getAttribute("user_session");
+       if(us == null){
+           session.setAttribute("loginMsg", "Please Login First !");
+           response.sendRedirect("login.jsp");
+       }
+         %>
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="home.jsp">Bid On</a>
 
-            <a href="addProduct.jsp">Add Product</a>
+    <a href="addProduct.jsp" class="addProduct">Add Product</a>
 
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
@@ -100,6 +118,7 @@
    <!-- product detail -->
    
    <%-- main body start --%>
+
    <div class="container">
      <h1></h1>
                    <%  
@@ -107,6 +126,20 @@
                     request.setAttribute("list",list);  
                     int count = 0;
                   %>
+    <div class="row">
+         <%
+            try {
+                    String data = session.getAttribute("msg").toString();
+         %>
+                     <div class="alert alert-danger" role="alert">
+                        <%= data %>
+                   </div>
+         <%         
+                    session.removeAttribute("msg");
+                } catch (Exception e) {
+                }
+         %>
+    </div>
     <div class="row">
         <c:forEach items="${list}" var="u">
             <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">

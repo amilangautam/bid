@@ -95,8 +95,9 @@
         session.setAttribute("error_code", "404");
         session.setAttribute("msg", "Sorry this Servlet only handles file upload request");
     }
-
+    session.setAttribute("msg","Product Added successfully!!");
     response.sendRedirect("home.jsp");
+    
 %>
 
     </body>

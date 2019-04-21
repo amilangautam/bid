@@ -22,7 +22,6 @@
                  <% 
                    String pid = request.getParameter("pid");
                    Product p = ProductDao.getRecordById(Integer.parseInt(pid));
-
                  %>
             <div class="row">
                 <div class="col-md-4"></div>
@@ -34,9 +33,10 @@
                     <h5>Bid Deadline :<span><%= p.getDate()%></span></h5>
                     <h5>Product Description:</h5>
                     <p> " <%= p.getDescription()%> "</p>
-                    <form action="" method="post">
+                    <form action="bidProcess.jsp" method="post">
                          <div class="form-group">
-                            <input type="text" class="form-control" onkeypress="isInputNumber(event)"  name="bid_amount" placeholder="enter bid price" required="required">
+                            <input type="text" class="form-control" onkeypress="isInputNumber(event)"  name="bid_price" placeholder="enter bid price" required="required">
+                            
                             <script>
                                   function isInputNumber(evt){
                                         var ch = String.fromCharCode(evt.which);
@@ -45,6 +45,7 @@
                                         }
                                     }
                                  </script>
+                                 
                          </div>        
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-lg btn-block">Bid Now</button>

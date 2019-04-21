@@ -25,7 +25,7 @@
 
                  %>
             <div class="row">
-                <div class="col-md-4"></div>
+                <div class="col-md-2"></div>
                 <div class="col-md-4">
                     <img src="../image/product/<%= p.getFilename()%>" height="300" width="350" style="margin-top: 30px">
                     <h5>Product Name :<span><%= p.getPname()%></span></h5>
@@ -51,7 +51,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4"></div>
+                <div class="col-md-6"></div>
             </div>
         </div>
     </body>

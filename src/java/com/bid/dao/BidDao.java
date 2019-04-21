@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.bid.dao;
+
+import com.bid.bean.Bid;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+/**
+ *
+ * @author 97798
+ */
+public class BidDao {
+     public static Connection getConnection(){
+        Connection conn = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn=DriverManager.getConnection("jdbc:mysql://localhost/online_bidding_system","root","");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return conn;
+    }
+     //bid product start
+     public static int bidProduct(Bid bd){
+        int status = 0;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement ps = conn.prepareStatement("insert into bid (bid_price) values(?)");
+            
+            ps.setString(1, bd.getBid_price());
+            status = ps.executeUpdate();
+                 
+                 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return status;
+    }
+     //bid product end
+     
+
+    
+}

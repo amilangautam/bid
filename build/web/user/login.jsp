@@ -16,6 +16,20 @@
     </head>
    <body>
         <div class="login-form">
+             <%
+            try {
+                  String data = session.getAttribute("loginMsg").toString();
+              %>
+                   
+                   <div class="alert alert-danger" role="alert">
+                        <%= data %>
+                   </div>
+              <%         
+                  session.removeAttribute("loginMsg");
+                } catch (Exception e) {
+                
+                }
+              %>
             <form action="loginProcess.jsp" method="post">
                 <h2 class="text-center">Log in</h2>       
                 <div class="form-group">

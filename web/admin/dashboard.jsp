@@ -1,3 +1,4 @@
+<%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
 <%@page import="com.bid.bean.Product"%>
@@ -27,9 +28,36 @@
 </head>
 
 <body id="page-top">
+    <%
+       UserLogin as = (UserLogin)session.getAttribute("admin_session");
+       if(as == null){
+           session.setAttribute("loginMsg", "Please Login First !");
+           response.sendRedirect("adminLogin.jsp");
+       }
+         %>
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="dashboard.jsp">Start Bootstrap</a>
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Product . . . ." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+   </form>
+    <ul class="navbar-nav ml-auto ml-md-0">
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="adminLogoutProcess.jsp">Logout</a>
+        </div>
+      </li>
+    </ul>
   </nav>
 
   <div id="wrapper">
@@ -94,6 +122,20 @@
                     request.setAttribute("list",list);  
                     int count = 0;
                   %>
+                <div class="row">
+                         <%
+                            try {
+                                    String data = session.getAttribute("msg").toString();
+                         %>
+                                     <div class="alert alert-danger" role="alert">
+                                        <%= data %>
+                                   </div>
+                         <%         
+                                    session.removeAttribute("msg");
+                                } catch (Exception e) {
+                                }
+                         %>
+                </div>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>

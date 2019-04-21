@@ -4,6 +4,7 @@
     Author     : 97798
 --%>
 
+<%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.TimeZone"%>
@@ -18,6 +19,13 @@
         <title>Add Product</title>
     </head>
     <body>
+        <%
+       UserLogin us = (UserLogin)session.getAttribute("user_session");
+       if(us == null){
+           session.setAttribute("loginMsg", "Please Login First !");
+           response.sendRedirect("login.jsp");
+       }
+         %>
         <div class="signup-form">
             <form action="addProductProcess.jsp" method="post" enctype="multipart/form-data">
                         <h2>Add Product</h2>

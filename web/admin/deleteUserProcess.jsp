@@ -12,7 +12,7 @@
 <jsp:setProperty property="*" name="info"></jsp:setProperty> 
 <%
   int i= UserLoginDao.deleteUser(info);
- 
+ session.setAttribute("msg", "User Deleted Successfully !!");
  response.sendRedirect("viewUser.jsp");
  
 %>

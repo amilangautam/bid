@@ -14,7 +14,7 @@
 <jsp:setProperty property="*" name="info"></jsp:setProperty> 
 <%
   int i= ProductDao.deleteProduct(info);
- 
+ session.setAttribute("msg", "Product Deleted Successfully !!");
  response.sendRedirect("dashboard.jsp");
  
 %>
