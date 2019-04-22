@@ -17,6 +17,7 @@
         <jsp:setProperty property="*" name="bd"></jsp:setProperty>
         <% 
             int i = BidDao.bidProduct(bd);
+            session.setAttribute("msg", "Product Bided Successfully!");
             response.sendRedirect("home.jsp");
          %>
     </body>

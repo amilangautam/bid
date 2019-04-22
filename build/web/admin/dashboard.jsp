@@ -146,7 +146,8 @@
                     <th>Description</th>
                     <th>CLose Date</th>
                     <th>Initial price</th>
-                    <th>Action</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                    </tr>
                 </thead>
                 <tbody>
@@ -159,7 +160,8 @@
                     <td>${u.getDescription()}</td>
                     <td>${u.getDate()}</td>
                     <td>${u.getInitialprice()}</td>
-                    <td><a href="editProduct.jsp?pid=${u.getPid()}">Edit</a>   <a href="deleteProductProcess.jsp?pid=${u.getPid()}">Delete</a> </td>
+                    <td><a href="editProduct.jsp?pid=${u.getPid()}">Edit</a></td>  
+                    <td><a href="deleteProductProcess.jsp?pid=${u.getPid()}">Delete</a> </td>
                   </tr>
                 </c:forEach>
                  <tbody>

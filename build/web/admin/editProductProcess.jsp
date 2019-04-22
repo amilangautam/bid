@@ -14,7 +14,7 @@
 <jsp:setProperty property="*" name="info"></jsp:setProperty> 
 <%
   int i= ProductDao.updateProduct(info);
- 
+ session.setAttribute("msg", "Product Updated successfully!");
  response.sendRedirect("dashboard.jsp");
  
 %>

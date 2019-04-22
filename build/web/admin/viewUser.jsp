@@ -13,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Charts</title>
+  <title>View User</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -143,12 +143,14 @@
                     <th>User Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>Address</th>
                     <th>Email</th>
                     <th>mobile</th>
                     <th>Password</th>
                     <th>Role</th>
                     <th>Registered Date</th>
-                    <th>Action</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                    </tr>
                 </thead>
                 <tbody>
@@ -157,12 +159,14 @@
                     <td>${u.getUser_id()}</td>
                     <td>${u.getFirstname()}</td>
                     <td>${u.getLastname()}</td>
+                    <td>${u.getAddress() }</td>
                     <td>${u.getEmail()}</td>
                     <td>${u.getMobile()}</td>
                     <td>${u.getPassword()}</td>
                     <td>${u.getRole()}</td>
                     <td>${u.getRegistered_date()}</td>
-                    <td><a href="editUser.jsp?user_id=${u.getUser_id()}">Edit</a>  <a href="deleteUserProcess.jsp?user_id=${u.getUser_id()}">Delete</a> </td>
+                    <td><a href="editUser.jsp?user_id=${u.getUser_id()}">Edit</a> </td> 
+                    <td><a href="deleteUserProcess.jsp?user_id=${u.getUser_id()}">Delete</a> </td>
                     
                   </tr>
                 </c:forEach>

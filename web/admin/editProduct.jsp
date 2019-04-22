@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/user_register.css">
         <script src="../bootstrap/css/bootstrap.min.js"></script>
-        <title>Add Product</title>
+        <title>Update Product</title>
     </head>
     <body>
         <% 
@@ -59,7 +59,7 @@
                  Bid Deadline: <input type="text" value="<%= p.getDate()%>" class="form-control" name="date" required="required">
                  </div> 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-block">Add Product</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Update Product</button>
                 </div>
             </form>
                

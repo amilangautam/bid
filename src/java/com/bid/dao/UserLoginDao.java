@@ -114,6 +114,7 @@ public class UserLoginDao {
                 b.setUser_id(rs.getInt("user_id"));
                 b.setFirstname(rs.getString("firstname"));
                 b.setLastname(rs.getString("lastname"));
+                b.setAddress(rs.getString("address"));
                 b.setEmail(rs.getString("email"));
                 b.setMobile(rs.getString("mobile"));
                 b.setPassword(rs.getString("password"));
@@ -137,9 +138,11 @@ public class UserLoginDao {
                 ResultSet rs = ps.executeQuery();
                 
                 while(rs.next()){
+                b = new UserLogin();
                 b.setUser_id(rs.getInt("user_id"));
                 b.setFirstname(rs.getString("firstname"));
                 b.setLastname(rs.getString("lastname"));
+                b.setAddress(rs.getString("address"));
                 b.setEmail(rs.getString("email"));
                 b.setMobile(rs.getString("mobile"));
                 b.setPassword(rs.getString("password"));  
@@ -175,22 +178,22 @@ public class UserLoginDao {
     //edit user by admin start
     
     //update
-    public static int editUserByAdmin(UserLogin b){  
+    public static int updateUser(UserLogin b){  
     int status=0;  
     try{  
         Connection conn=getConnection();  
-        PreparedStatement ps=conn.prepareStatement("update user set firstname =? , lastname= ? ,address =? , email =?, mobile = ? ,password = ?, role = ? where user_id=? ");  
+        PreparedStatement ps=conn.prepareStatement("update user set firstname =? , lastname= ? ,address =? , email =?, mobile = ? , role = ? ,password = ? where user_id=? ");  
           
-            ps.setString(1, b.getFirstname());
+            ps.setString(1,b.getFirstname());
             ps.setString(2,b.getLastname());
             ps.setString(3,b.getAddress());
             ps.setString(4,b.getEmail());
             ps.setString(5,b.getMobile());
-            ps.setString(6,b.getPassword());
-            ps.setString(7,b.getRole());
+            ps.setString(6,b.getRole());
+            ps.setString(7,b.getPassword());
             ps.setInt(8,b.getUser_id());
             
-        status=ps.executeUpdate();  
+            status=ps.executeUpdate();  
     }catch(Exception e){System.out.println(e);}  
     return status;  
 } 

@@ -3,6 +3,7 @@
     Created on : Apr 10, 2019, 7:24:17 AM
     Author     : 97798
 --%>
+<%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
 <%@page import="com.bid.bean.Product"%>
@@ -18,6 +19,13 @@
         <script src="../bootstrap/css/bootstrap.min.js"></script>
     </head>
     <body>
+        <%
+       UserLogin us = (UserLogin)session.getAttribute("user_session");
+       if(us == null){
+           session.setAttribute("loginMsg", "Please Login First !");
+           response.sendRedirect("login.jsp");
+       }
+         %>
         <div class="container">
                  <% 
                    String pid = request.getParameter("pid");

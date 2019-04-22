@@ -2,6 +2,7 @@
     Document   : productDescription
     Created on : Apr 10, 2019, 7:24:17 AM
     Author     : 97798
+
 --%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
@@ -35,17 +36,7 @@
                     <h5>Product Description:</h5>
                     <p> " <%= p.getDescription()%> "</p>
                     <form action="" method="post">
-                         <div class="form-group">
-                            <input type="text" class="form-control" onkeypress="isInputNumber(event)"  name="bid_amount" placeholder="enter bid price" required="required">
-                            <script>
-                                  function isInputNumber(evt){
-                                        var ch = String.fromCharCode(evt.which);
-                                        if(!(/[0-9]/.test(ch))){
-                                            evt.preventDefault();
-                                        }
-                                    }
-                                 </script>
-                         </div>        
+                                 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-lg btn-block">Bid Now</button>
                         </div>

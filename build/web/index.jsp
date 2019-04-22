@@ -17,7 +17,7 @@ https://bootsnipp.com/snippets/O5yMd
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/indexProduct.css">
         <script src="bootstrap/css/bootstrap.min.js"></script>
-        <title>JSP Page</title>
+        <title>Bid On</title>
     </head>
    <body>
         <div>
@@ -74,7 +74,7 @@ https://bootsnipp.com/snippets/O5yMd
                     <div class="price">
                      Initial Price:   ${u.getInitialprice()}
                     </div>
-                    <a class="add-to-cart" href="visitor/viewProduct.jsp?pid=${u.getPid()}">BID</a>
+                    <a class="add-to-cart" href="user/productDescription.jsp?pid=${u.getPid()}">BID</a>
                 </div>
             </div>
         </div>

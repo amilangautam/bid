@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/user_login.css">
         <script src="../bootstrap/css/bootstrap.min.js"></script>
-        <title>JSP Page</title>
+        <title>User Login</title>
     </head>
    <body>
         <div class="login-form">

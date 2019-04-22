@@ -7,11 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.bid.bean.UserLogin,com.bid.dao.UserLoginDao,java.util.*" %>
 
-<jsp:useBean id="info" class="com.bid.bean.UserLogin"></jsp:useBean>
-<jsp:setProperty property="*" name="info"></jsp:setProperty> 
+<jsp:useBean id="b" class="com.bid.bean.UserLogin"></jsp:useBean>
+<jsp:setProperty property="*" name="b"></jsp:setProperty> 
 <%
-  int i= UserLoginDao.editUserByAdmin(info);
- 
+  int i= UserLoginDao.updateUser(b);
+ session.setAttribute("msg", "Data Updated Sucssfully!");
  response.sendRedirect("viewUser.jsp");
  
 %>
