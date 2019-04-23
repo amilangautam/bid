@@ -10,7 +10,7 @@
 <jsp:useBean id="b" class="com.bid.bean.UserLogin"></jsp:useBean>
 <jsp:setProperty property="*" name="b"></jsp:setProperty> 
 <%
-  int i= UserLoginDao.updateUser(b);
+ int i = UserLoginDao.updateUser(b);
  session.setAttribute("msg", "Data Updated Sucssfully!");
  response.sendRedirect("viewUser.jsp");
  

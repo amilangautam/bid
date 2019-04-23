@@ -25,27 +25,27 @@
             
          %>
         <div class="signup-form">
-            <form action="editProductProcess.jsp" method="post" enctype="multipart/form-data">
-                        <h2>Edit Product</h2>
-                <input type="hidden" name="id" value="<%=p.getPid() %>">      
+            <form action="editProductProcess.jsp" method="post">
+                        <h2>Update Product</h2>
+                        <input type="hidden" name="pid" value="<%= p.getPid() %>">       
                 <div class="form-group">
-                Product Name      <input type="text" class="form-control" name="pname" placeholder="Product Name" value="<%=p.getPname()%>" required="required">
+                    Product Name:<input type="text" class="form-control" name="pname" value="<%= p.getPname() %>" placeholder="Product Name" required="required">
                 </div>
                 <div class="form-group">
-                Product Category:<select class="form-control" name="category" value="<%= p.getCategory()%>" >
+                    Product Category:<select class="form-control" value="<%= p.getCategory() %>" name="category">
                             <option value="Books">Books</option>
                             <option value="Electronoics">Electronics</option>
-                            <option value="Beauty and Cosmetics">Beauty and Cosmetics</option>
-                            <option value="Health and Personal Care">Health and Personal Care</option>
+                            <option value="Beauty">Beauty</option>
                             <option value="Houseware">Housewares</option>
-                            <option value="Clothing and Fashion">Clothing and Fashion</option>
+                            <option value="Clothing">Clothing</option>
+                             <option value="Fashion">fashion</option>
                          </select>
                 </div>
                 <div class="form-group">
-                 Product Description   <textarea class="form-control" value="<%= p.getDescription()%>" rows="5" cols="50" placeholder="Product Description" name="description"></textarea>
+                  Description:  <textarea class="form-control" rows="5" cols="50"  placeholder="Product Description" name="description"> <%= p.getDescription() %></textarea>
                 </div>
                 <div class="form-group">
-                Initial Price    <input type="text" class="form-control" value="<%= p.getInitialprice()%>"  name="initialprice" onkeypress="isInputNumber(event)" placeholder="Initial Price" required="required">
+                 Initial Price:  <input type="text" class="form-control" value="<%= p.getInitialprice() %>" name="initialprice" onkeypress="isInputNumber(event)" placeholder="Initial Price" required="required">
                     <script>
                         function isInputNumber(evt){
                             var ch = String.fromCharCode(evt.which);
@@ -56,8 +56,13 @@
                     </script>
                  </div>
                 <div class="form-group">
-                 Bid Deadline: <input type="text" value="<%= p.getDate()%>" class="form-control" name="date" required="required">
+                    Bid Deadline: <input type="text" value="<%= p.getDate() %>" class="form-control" name="date" required="required">
                  </div> 
+                 <div class="form-group">
+                   Product Image:<br>
+                    <img src="../image/product/<%= p.getFilename() %>" height="100" width="140" >
+                 </div>
+                   
                 <div class="form-group">
                     <button type="submit" class="btn btn-success btn-lg btn-block">Update Product</button>
                 </div>

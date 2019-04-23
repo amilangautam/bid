@@ -63,12 +63,12 @@ https://bootsnipp.com/snippets/O5yMd
             <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">
             <div class="product-grid4" style="border: 1px solid black">
                 <div class="product-image4">
-                    <a href="#">
+                    <a href="user/productDescription.jsp?pid=${u.getPid()}">
                         <img class="pic-1" src="image/product/${u.getFilename()}" height="180" width="200">
                     </a>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">${u.getPname()}</a></h3>
+                    <h3 class="title">${u.getPname()}</h3>
                     <h3 class="title">Category:<a href="#">${u.getCategory()}</a></h3>
                     <h3 class="title">Close Date:${u.getDate()}</h3>
                     <div class="price">

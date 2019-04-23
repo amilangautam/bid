@@ -38,10 +38,9 @@
                             <option value="Books">Books</option>
                             <option value="Electronoics">Electronics</option>
                             <option value="Beauty">Beauty</option>
-                            <option value="Health">Health</option>
                             <option value="Houseware">Housewares</option>
                             <option value="Clothing">Clothing</option>
-                             <option value="Fashion">fashiion</option>
+                             <option value="Fashion">fashion</option>
                          </select>
                 </div>
                 <div class="form-group">

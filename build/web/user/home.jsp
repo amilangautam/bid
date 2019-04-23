@@ -88,20 +88,15 @@
           <span>Product</span>
         </a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="viewUser.jsp">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>User</span></a>
-      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>Profile</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" href="login.html">Login</a>
-          <a class="dropdown-item" href="register.html">Register</a>
+          <a class="dropdown-item" href="myProfile.jsp">My profile</a>
+          <a class="dropdown-item" href="changePassword.jsp">Change Password</a>
           <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Other Pages:</h6>
@@ -118,9 +113,10 @@
    <!-- product detail -->
    
    <%-- main body start --%>
+   <div id="content-wrapper">
 
    <div class="container">
-     <h1></h1>
+       
                    <%  
                     List<Product> list=ProductDao.getAllRecords();
                     request.setAttribute("list",list);  
@@ -165,6 +161,8 @@
         
     </div>
 </div>
+</div>
+        
    <!-- main body finisehed -->
               
               

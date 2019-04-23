@@ -30,6 +30,7 @@
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/userHomeCard.css">
+  <script src="../javascript/userLogin.js"></script>
   <style>
       .addProduct{
           color: white; position: absolute;left: 223px;text-decoration: none;
@@ -39,6 +40,7 @@
           color: rgba(255, 255, 255, 0.75);
           text-decoration: none;
       }
+      body{margin-top:20px;}                                                                    
   </style>
 
 </head>
@@ -112,57 +114,40 @@
     </ul>
    <!-- product detail -->
    
-   <%-- main body start --%>
+   <!-- main body start -->
    <div id="content-wrapper">
-
-   <div class="container">
-       
-                   <%  
-                    List<Product> list=ProductDao.getAllRecords();
-                    request.setAttribute("list",list);  
-                    int count = 0;
-                  %>
-    <div class="row">
-         <%
-            try {
-                    String data = session.getAttribute("msg").toString();
-         %>
-                     <div class="alert alert-danger" role="alert">
-                        <%= data %>
-                   </div>
-         <%         
-                    session.removeAttribute("msg");
-                } catch (Exception e) {
-                }
-         %>
-    </div>
-    <div class="row">
-        <c:forEach items="${list}" var="u">
-            <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">
-            <div class="product-grid4" style="border: 1px solid black">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="../image/product/${u.getFilename()}" height="180" width="200">
-                    </a>
+      <hr>
+      <div class="container">
+        <form class="form" action="##" method="post" id="registrationForm" onsubmit="return validate();">
+            <div >
+                <span id="message_cpassword" style="color:red;"> </span>
                 </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">${u.getPname()}</a></h3>
-                    <h3 class="title">Category:<a href="#">${u.getCategory()}</a></h3>
-                    <h3 class="title">Close Date:${u.getDate()}</h3>
-                    <div class="price">
-                     Initial Price:   ${u.getInitialprice()}
+            <div class="form-group">
+                    <div class="col-xs-6">
+                        <label for="password">
+                            <h4>Password</h4></label>
+                        <input type="password" class="form-control" name="password" id="passwords" placeholder="password" title="enter your password.">
                     </div>
-                    <a class="add-to-cart" href="productDescription.jsp?pid=${u.getPid()}">BID</a>
                 </div>
-            </div>
-        </div>
-        </c:forEach>
+                <div class="form-group">
 
-        
-    </div>
-</div>
-</div>
-        
+                    <div class="col-xs-6">
+                        <label for="password2">
+                            <h4>Verify Password</h4></label>
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_passwords" placeholder="confirm password" title="enter your password2.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <br>
+                        <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                        <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                    </div>
+                </div>
+                
+         </form>
+      </div>
+   </div>
    <!-- main body finisehed -->
               
               

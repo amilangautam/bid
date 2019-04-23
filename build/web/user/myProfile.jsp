@@ -39,6 +39,7 @@
           color: rgba(255, 255, 255, 0.75);
           text-decoration: none;
       }
+      body{margin-top:20px;}                                                                    
   </style>
 
 </head>
@@ -112,57 +113,34 @@
     </ul>
    <!-- product detail -->
    
-   <%-- main body start --%>
+   <!-- main body start -->
    <div id="content-wrapper">
-
-   <div class="container">
-       
-                   <%  
-                    List<Product> list=ProductDao.getAllRecords();
-                    request.setAttribute("list",list);  
-                    int count = 0;
-                  %>
-    <div class="row">
-         <%
-            try {
-                    String data = session.getAttribute("msg").toString();
-         %>
-                     <div class="alert alert-danger" role="alert">
-                        <%= data %>
-                   </div>
-         <%         
-                    session.removeAttribute("msg");
-                } catch (Exception e) {
-                }
-         %>
-    </div>
-    <div class="row">
-        <c:forEach items="${list}" var="u">
-            <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">
-            <div class="product-grid4" style="border: 1px solid black">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="../image/product/${u.getFilename()}" height="180" width="200">
-                    </a>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">${u.getPname()}</a></h3>
-                    <h3 class="title">Category:<a href="#">${u.getCategory()}</a></h3>
-                    <h3 class="title">Close Date:${u.getDate()}</h3>
-                    <div class="price">
-                     Initial Price:   ${u.getInitialprice()}
-                    </div>
-                    <a class="add-to-cart" href="productDescription.jsp?pid=${u.getPid()}">BID</a>
-                </div>
-            </div>
+      <hr>
+      <div class="container">
+ <div class="row">
+        <div class="col-sm-8">
+            <h1>User name</h1></div>
+        <div class="col-sm-3">
+            <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
         </div>
-        </c:forEach>
-
-        
+        <div class="col-sm-1"></div>
     </div>
-</div>
-</div>
+    <div class="row">
         
+        <div class="col-sm-12">
+
+                <div>
+                    <hr>
+                    <p> <%= us.getUser_id() %> </p>
+                    <p>Address: Hetauda</p>
+                </div>
+
+            </div>
+            <!--/tab-pane-->
+        </div>
+   </div>
+  
+   </div>
    <!-- main body finisehed -->
               
               

@@ -2,19 +2,7 @@
     Document   : loginProcess
     Created on : Mar 26, 2019, 12:48:07 PM
     Author     : 97798
- <%
-          UserLoginDao obj_UserLoginDao = new UserLoginDao();
-         // boolean flag = obj_UserLoginDao.check_user(b);
-         String role = obj_UserLoginDao.check_admin(b);
-          if(role == "user_role"){
-              session.setAttribute("user_session",b);
-              response.sendRedirect("home.jsp");
-          }else{
-              session.setAttribute("msg", "Invalid Login!");
-              response.sendRedirect("login.jsp");
-          }
-        %>
-
+  
 --%>
 <%@page import="com.bid.bean.UserLogin,com.bid.dao.UserLoginDao" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -23,6 +23,15 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
+  <style>
+      .addAdmin{
+          position: absolute;
+          left: 987px;
+      }
+      .addAdmin:hover{
+          text-decoration: none;
+      }
+  </style>
 
 </head>
 
@@ -116,6 +125,7 @@
           <div class="card-header">
             <i class="fas fa-table"></i>
             User Detail
+            <a class="addAdmin" href="addAdmin.jsp">Add Admin</a>
           </div>
           <div class="card-body">
               
@@ -145,8 +155,7 @@
                     <th>Last Name</th>
                     <th>Address</th>
                     <th>Email</th>
-                    <th>mobile</th>
-                    <th>Password</th>
+                    <th>Mobile</th>
                     <th>Role</th>
                     <th>Registered Date</th>
                     <th>Edit</th>
@@ -162,7 +171,6 @@
                     <td>${u.getAddress() }</td>
                     <td>${u.getEmail()}</td>
                     <td>${u.getMobile()}</td>
-                    <td>${u.getPassword()}</td>
                     <td>${u.getRole()}</td>
                     <td>${u.getRegistered_date()}</td>
                     <td><a href="editUser.jsp?user_id=${u.getUser_id()}">Edit</a> </td> 

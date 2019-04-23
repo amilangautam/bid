@@ -142,6 +142,7 @@ public class ProductDao {
         ps.setString(3, p.getDescription());
         ps.setString(4, p.getInitialprice());
         ps.setString(5, p.getDate());
+        ps.setInt(6,p.getPid());
         status=ps.executeUpdate();  
     }catch(Exception e){System.out.println(e);}  
     return status;  

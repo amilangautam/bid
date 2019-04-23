@@ -17,7 +17,7 @@
               //confirmed password
               if(pass!=cpass)
               {
-                 document.getElementById("message_cpassword").innerHTML="password do not matches";
+                 document.getElementById("message_cpassword").innerHTML="Password do not matches !!";
                   return false; 
               }
              

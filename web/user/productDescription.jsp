@@ -17,6 +17,11 @@
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/productDescription.css">
         <script src="../bootstrap/css/bootstrap.min.js"></script>
+        <style>
+            .bidNote{
+                font-size: 12px;
+            }
+        </style>
     </head>
     <body>
         <%
@@ -37,7 +42,7 @@
                     <img src="../image/product/<%= p.getFilename()%>" height="300" width="350" style="margin-top: 30px">
                     <h5>Product Name :<span><%= p.getPname()%></span></h5>
                     <h5>Category :<span><%= p.getCategory()%></span></h5>
-                    <h5>Base Price :<span><%= p.getInitialprice()%></span></h5>
+                    <h5>Minimum Bid :<span><%= p.getInitialprice()%></span></h5>
                     <h5>Bid Deadline :<span><%= p.getDate()%></span></h5>
                     <h5>Product Description:</h5>
                     <p> " <%= p.getDescription()%> "</p>
@@ -53,8 +58,9 @@
                                         }
                                     }
                                  </script>
-                                 
-                         </div>        
+                             <span class="bidNote">Note: Your bid amount must be more than minimum bid</span>    
+                         </div>     
+                        
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-lg btn-block">Bid Now</button>
                         </div>

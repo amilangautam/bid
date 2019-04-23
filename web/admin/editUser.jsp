@@ -31,7 +31,7 @@
                     <input type="text"  class="form-control" value="<%= b.getFirstname() %>" name="firstname" required="required" placeholder="Firstname">
                 </div>
                 <div class="form-group">
-                        <input type="text" class="form-control" value="<%= b.getLastname() %>" name="lastname " placeholder="Lastname" required="required">
+                        <input type="text" class="form-control" value="<%= b.getLastname() %>" name="lastname" placeholder="Lastname" required="required">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" value="<%= b.getAddress() %>" name="address" placeholder="Address" required="required">

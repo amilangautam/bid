@@ -61,7 +61,59 @@ public class UserLoginDao {
         
     //insert user finished    
  
+        
+  //insert admin 
+        public static int insertAdmin(UserLogin b){
+        int status=0;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement ps = null;
+            String query = "insert into user (firstname , lastname ,address , email, mobile ,password ,role ) values(?,?,?,?,?,?,?)";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, b.getFirstname());
+            ps.setString(2,b.getLastname());
+            ps.setString(3,b.getAddress());
+            ps.setString(4,b.getEmail());
+            ps.setString(5,b.getMobile());
+            ps.setString(6,b.getRole());
+            ps.setString(7,b.getPassword());
+            status = ps.executeUpdate();
+                 
+                 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return status;
+    }
+        
+    //insert admin finished 
     
+    //edit user by admin start
+    
+    //update
+    public static int updateUser(UserLogin b){  
+    int status=0;  
+    try{  
+        Connection conn=getConnection();  
+        PreparedStatement ps= null;
+        String updateQuery = ("update user set firstname =? , lastname= ? ,address =? , email =?, mobile = ? , role = ? ,password = ? where user_id=? ");  
+        ps = conn.prepareStatement(updateQuery);
+            ps.setString(1,b.getFirstname());
+            ps.setString(2,b.getLastname());
+            ps.setString(3,b.getAddress());
+            ps.setString(4,b.getEmail());
+            ps.setString(5,b.getMobile());
+            ps.setString(6,b.getRole());
+            ps.setString(7,b.getPassword());
+            ps.setInt(8,b.getUser_id());
+            
+            status=ps.executeUpdate();  
+    }catch(Exception e){System.out.println(e);}  
+    return status;  
+} 
+    //edit user by admin finished
+   
+        
     //check user type
     public String check_admin(UserLogin b){
             Connection conn = getConnection();
@@ -175,30 +227,7 @@ public class UserLoginDao {
     
     
     
-    //edit user by admin start
-    
-    //update
-    public static int updateUser(UserLogin b){  
-    int status=0;  
-    try{  
-        Connection conn=getConnection();  
-        PreparedStatement ps=conn.prepareStatement("update user set firstname =? , lastname= ? ,address =? , email =?, mobile = ? , role = ? ,password = ? where user_id=? ");  
-          
-            ps.setString(1,b.getFirstname());
-            ps.setString(2,b.getLastname());
-            ps.setString(3,b.getAddress());
-            ps.setString(4,b.getEmail());
-            ps.setString(5,b.getMobile());
-            ps.setString(6,b.getRole());
-            ps.setString(7,b.getPassword());
-            ps.setInt(8,b.getUser_id());
-            
-            status=ps.executeUpdate();  
-    }catch(Exception e){System.out.println(e);}  
-    return status;  
-} 
-    //edit user by admin finished
-        
+     
     //check email and password
 //    public boolean check_user(UserLogin b){
 //    boolean flag = false;
