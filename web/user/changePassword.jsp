@@ -3,6 +3,7 @@
     Created on : Mar 26, 2019, 11:36:10 AM
     Author     : 97798
 --%>
+<%@page import="com.bid.dao.UserLoginDao"%>
 <%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
@@ -40,7 +41,7 @@
           color: rgba(255, 255, 255, 0.75);
           text-decoration: none;
       }
-      body{margin-top:20px;}                                                                    
+                                                                        
   </style>
 
 </head>
@@ -72,7 +73,10 @@
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
+           <%
+                if(us != null){ %> <%= us.getEmail() %> <%}
+            %>
+            <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="logoutProcess.jsp">Logout</a>
@@ -97,13 +101,8 @@
           <span>Profile</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="myProfile.jsp">My profile</a>
+          <a class="dropdown-item" href="myProfile.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My profile</a>
           <a class="dropdown-item" href="changePassword.jsp">Change Password</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
       </li>
       <li class="nav-item">
@@ -118,15 +117,16 @@
    <div id="content-wrapper">
       <hr>
       <div class="container">
-        <form class="form" action="##" method="post" id="registrationForm" onsubmit="return validate();">
-            <div >
+        <form class="form" action="changePasswordProcess.jsp" method="post" id="registrationForm" onsubmit="return validate();">
+           <div >
                 <span id="message_cpassword" style="color:red;"> </span>
                 </div>
             <div class="form-group">
                     <div class="col-xs-6">
                         <label for="password">
                             <h4>Password</h4></label>
-                        <input type="password" class="form-control" name="password" id="passwords" placeholder="password" title="enter your password.">
+                <input type="hidden" name="email"  value="<%if(us != null){ %><%= us.getEmail() %><%}%>">        
+                <input type="password" class="form-control" name="password" id="passwords" placeholder="password" title="enter your password.">
                     </div>
                 </div>
                 <div class="form-group">

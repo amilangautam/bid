@@ -5,13 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page import="com.bid.bean.UserLogin,com.bid.dao.UserLoginDao,java.util.*" %>
+
+<jsp:useBean id="b" class="com.bid.bean.UserLogin"></jsp:useBean>
+<jsp:setProperty property="*" name="b"></jsp:setProperty> 
+<%
+ int i = UserLoginDao.changeUserPassword(b);
+ session.setAttribute("msg", "Password Changed Successfully, Please Login!");
+ response.sendRedirect("login.jsp");
+ 
+%>

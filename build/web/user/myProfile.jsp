@@ -2,7 +2,10 @@
     Document   : home
     Created on : Mar 26, 2019, 11:36:10 AM
     Author     : 97798
+https://www.bootdey.com/snippets/view/Table-user-information#html
+ 
 --%>
+<%@page import="com.bid.dao.UserLoginDao"%>
 <%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
@@ -22,6 +25,7 @@
   <title>User DashBoard</title>
 
   <!-- Custom fonts for this template-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
@@ -39,7 +43,14 @@
           color: rgba(255, 255, 255, 0.75);
           text-decoration: none;
       }
-      body{margin-top:20px;}                                                                    
+       .inf-content{
+    border:1px solid #DDDDDD;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}			                                                      
+                                                                          
   </style>
 
 </head>
@@ -71,7 +82,11 @@
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
+            <%
+                if(us != null){ %> <%= us.getEmail() %> <%}
+            %>
+            
+            <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="logoutProcess.jsp">Logout</a>
@@ -96,13 +111,9 @@
           <span>Profile</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="myProfile.jsp">My profile</a>
+          <a class="dropdown-item" href="myProfile.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My profile</a>
           <a class="dropdown-item" href="changePassword.jsp">Change Password</a>
-          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header">Other Pages:</h6>
-          <a class="dropdown-item" href="404.html">404 Page</a>
-          <a class="dropdown-item" href="blank.html">Blank Page</a>
+          
         </div>
       </li>
       <li class="nav-item">
@@ -114,36 +125,123 @@
    <!-- product detail -->
    
    <!-- main body start -->
+         <%
+            String email = request.getParameter("email");
+            UserLogin u = UserLoginDao.getSessionRecordByEmail(email);
+        %>
    <div id="content-wrapper">
-      <hr>
-      <div class="container">
- <div class="row">
-        <div class="col-sm-8">
-            <h1>User name</h1></div>
-        <div class="col-sm-3">
-            <a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
-        </div>
-        <div class="col-sm-1"></div>
-    </div>
+   
+            <div class="container bootstrap snippet">
+<div class="panel-body inf-content">
     <div class="row">
-        
-        <div class="col-sm-12">
-
-                <div>
-                    <hr>
-                    <p> <%= us.getUser_id() %> </p>
-                    <p>Address: Hetauda</p>
-                </div>
-
-            </div>
-            <!--/tab-pane-->
+        <div class="col-md-4">
+            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/user-453533-fdadfd.png" data-original-title="Usuario"> 
+            <ul title="Ratings" class="list-inline ratings text-center">
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+            </ul>
         </div>
-   </div>
+        <div class="col-md-6">
+            <strong>User Information</strong><br>
+            <div class="table-responsive">
+            <table class="table table-condensed table-responsive table-user-information">
+                <tbody>
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                User Id                                              
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            <%= u.getUser_id() %>     
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-user  text-primary"></span>    
+                                Firstname                                               
+                            </strong>
+                        </td>
+                        <td class="text-primary text-capitalize">
+                            <%= u.getFirstname() %>     
+                        </td>
+                    </tr>
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                Lastname                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary text-capitalize">
+                           <%= u.getLastname() %>   
+                        </td>
+                    </tr>
+                    
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                Address                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary text-capitalize">
+                           <%= u.getAddress() %>   
+                        </td>
+                    </tr>
+
+
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-eye-open text-primary"></span> 
+                                Role                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary text-capitalize">
+                            <%= u.getRole() %> 
+                        </td>
+                    </tr>
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                Email                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            <%= u.getEmail() %>  
+                        </td>
+                    </tr>
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                created                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary">
+                            <%= u.getRegistered_date() %> 
+                        </td>
+                    </tr>
+                                                       
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div> 
   
    </div>
    <!-- main body finisehed -->
               
-              
+                                         
  
  <!-- /.content-wrapper -->
  </div>

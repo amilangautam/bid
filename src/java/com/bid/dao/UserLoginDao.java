@@ -113,7 +113,59 @@ public class UserLoginDao {
 } 
     //edit user by admin finished
    
-        
+    
+    //change user password start
+    
+    public static int changeUserPassword(UserLogin b){  
+    int status=0;  
+    try{  
+        Connection conn=getConnection();  
+        PreparedStatement ps= null;
+        String updateQuery = ("update user set password = ? where email =? ");  
+        ps = conn.prepareStatement(updateQuery);
+            
+            ps.setString(1,b.getPassword());
+            ps.setString(2,b.getEmail());
+            
+            
+            status=ps.executeUpdate();  
+    }catch(Exception e){System.out.println(e);}  
+    return status;  
+}
+    
+    //change user password finished
+    
+//session user Information
+     public static UserLogin getSessionRecordByEmail(String email){
+        UserLogin b= null;
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("select * from user where email = ?");
+                ps.setString(1,email);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                b = new UserLogin();
+                b.setUser_id(rs.getInt("user_id"));
+                b.setFirstname(rs.getString("firstname"));
+                b.setLastname(rs.getString("lastname"));
+                b.setAddress(rs.getString("address"));
+                b.setEmail(rs.getString("email"));
+                b.setMobile(rs.getString("mobile"));
+                b.setPassword(rs.getString("password"));  
+                b.setRole(rs.getString("role"));
+                b.setRegistered_date(rs.getString("registered_date"));
+               
+                    } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return b;
+        } 
+    
+ //session user information   
+
+    
     //check user type
     public String check_admin(UserLogin b){
             Connection conn = getConnection();
