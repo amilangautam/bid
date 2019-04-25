@@ -117,9 +117,9 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="feedback.jsp">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Feedback</span></a>
       </li>
     </ul>
    <!-- product detail -->
@@ -135,7 +135,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
 <div class="panel-body inf-content">
     <div class="row">
         <div class="col-md-4">
-            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/user-453533-fdadfd.png" data-original-title="Usuario"> 
+            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="../image/user/user.png" data-original-title="Usuario"> 
             <ul title="Ratings" class="list-inline ratings text-center">
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
@@ -152,7 +152,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>        
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                <span class="fas fa-asterisk text-primary"></span>
                                 User Id                                              
                             </strong>
                         </td>
@@ -163,7 +163,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>    
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-user  text-primary"></span>    
+                                <span class="fa fa-user  text-primary"></span>    
                                 Firstname                                               
                             </strong>
                         </td>
@@ -174,7 +174,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>        
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                <span class="fa fa-cloud text-primary"></span>  
                                 Lastname                                                
                             </strong>
                         </td>
@@ -186,7 +186,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>        
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                <span class="fa fa-address-card text-primary"></span>  
                                 Address                                                
                             </strong>
                         </td>
@@ -199,7 +199,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>        
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-eye-open text-primary"></span> 
+                                <span class="fa fa-eye text-primary"></span> 
                                 Role                                                
                             </strong>
                         </td>
@@ -210,7 +210,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>        
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                <span class="fa fa-envelope text-primary"></span> 
                                 Email                                                
                             </strong>
                         </td>
@@ -221,7 +221,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                     <tr>        
                         <td>
                             <strong>
-                                <span class="glyphicon glyphicon-calendar text-primary"></span>
+                                <span class="fa fa-calendar text-primary"></span>
                                 created                                                
                             </strong>
                         </td>

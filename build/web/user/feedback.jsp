@@ -2,10 +2,7 @@
     Document   : home
     Created on : Mar 26, 2019, 11:36:10 AM
     Author     : 97798
-https://www.bootdey.com/snippets/view/Table-user-information#html
- 
 --%>
-<%@page import="com.bid.dao.UserLoginDao"%>
 <%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
@@ -25,7 +22,6 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
   <title>User DashBoard</title>
 
   <!-- Custom fonts for this template-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Page level plugin CSS-->
@@ -43,14 +39,6 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
           color: rgba(255, 255, 255, 0.75);
           text-decoration: none;
       }
-       .inf-content{
-    border:1px solid #DDDDDD;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    border-radius:10px;
-    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
-}			                                                      
-                                                                          
   </style>
 
 </head>
@@ -82,10 +70,9 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%
+           <%
                 if(us != null){ %> <%= us.getEmail() %> <%}
             %>
-            
             <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -113,7 +100,6 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="myProfile.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My profile</a>
           <a class="dropdown-item" href="changePassword.jsp">Change Password</a>
-          
         </div>
       </li>
       <li class="nav-item">
@@ -124,124 +110,75 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
     </ul>
    <!-- product detail -->
    
-   <!-- main body start -->
-         <%
-            String email = request.getParameter("email");
-            UserLogin u = UserLoginDao.getSessionRecordByEmail(email);
-        %>
+   <%-- main body start --%>
    <div id="content-wrapper">
-   
-            <div class="container bootstrap snippet">
-<div class="panel-body inf-content">
-    <div class="row">
-        <div class="col-md-4">
-            <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="../image/user/user.png" data-original-title="Usuario"> 
-            <ul title="Ratings" class="list-inline ratings text-center">
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <strong>User Information</strong><br>
-            <div class="table-responsive">
-            <table class="table table-condensed table-responsive table-user-information">
-                <tbody>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="fas fa-asterisk text-primary"></span>
-                                User Id                                              
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            <%= u.getUser_id() %>     
-                        </td>
-                    </tr>
-                    <tr>    
-                        <td>
-                            <strong>
-                                <span class="fa fa-user  text-primary"></span>    
-                                Firstname                                               
-                            </strong>
-                        </td>
-                        <td class="text-primary text-capitalize">
-                            <%= u.getFirstname() %>     
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="fa fa-cloud text-primary"></span>  
-                                Lastname                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary text-capitalize">
-                           <%= u.getLastname() %>   
-                        </td>
-                    </tr>
-                    
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="fa fa-address-card text-primary"></span>  
-                                Address                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary text-capitalize">
-                           <%= u.getAddress() %>   
-                        </td>
-                    </tr>
+<div class="container">
+    <%
+            try {
+                    String data = session.getAttribute("msg").toString();
+         %>
+                     <div class="alert alert-danger" role="alert">
+                        <%= data %>
+                   </div>
+         <%         
+                    session.removeAttribute("msg");
+                } catch (Exception e) {
+                }
+         %>
+    <h2 class="text-center">Feedback Form</h2>
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8 col-lg-6 pb-5">
 
 
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="fa fa-eye text-primary"></span> 
-                                Role                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary text-capitalize">
-                            <%= u.getRole() %> 
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="fa fa-envelope text-primary"></span> 
-                                Email                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            <%= u.getEmail() %>  
-                        </td>
-                    </tr>
-                    <tr>        
-                        <td>
-                            <strong>
-                                <span class="fa fa-calendar text-primary"></span>
-                                created                                                
-                            </strong>
-                        </td>
-                        <td class="text-primary">
-                            <%= u.getRegistered_date() %> 
-                        </td>
-                    </tr>
-                                                       
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
+                    <!--Form with header-->
+
+                    <form action="feedbackProcess.jsp" method="get">
+                        <div class="card border-primary rounded-0">
+                            <div class="card-header p-0">
+                                <div class="bg-info text-white text-center py-2">
+                                    <h3><i class="fa fa-envelope"></i>Contact Us </h3>
+                                </div>
+                            </div>
+                            <div class="card-body p-3">
+
+                                <!--Body-->
+                                <input type="hidden" name="email" value="<%if(us != null){%><%=us.getEmail()%><%}%>">
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-id-card text-info"></i></div>
+                                        </div>
+                                        <input type="text" class="form-control" id="nombre" name="subject" placeholder="Enter the subject" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                                        </div>
+                                        <textarea class="form-control" placeholder="Enter Feedback" name="description" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <input type="submit" value="submit" class="btn btn-info btn-block rounded-0 py-2">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <!--Form with header-->
+
+
+                </div>
+	</div>
 </div>
-</div> 
-  
    </div>
+        
    <!-- main body finisehed -->
               
-                                         
+              
  
  <!-- /.content-wrapper -->
  </div>

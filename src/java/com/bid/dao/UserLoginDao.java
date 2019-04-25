@@ -75,8 +75,8 @@ public class UserLoginDao {
             ps.setString(3,b.getAddress());
             ps.setString(4,b.getEmail());
             ps.setString(5,b.getMobile());
-            ps.setString(6,b.getRole());
-            ps.setString(7,b.getPassword());
+            ps.setString(6,b.getPassword());
+            ps.setString(7,b.getRole());
             status = ps.executeUpdate();
                  
                  

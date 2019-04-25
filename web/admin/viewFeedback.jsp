@@ -1,12 +1,8 @@
-<%-- 
-    Document   : home
-    Created on : Mar 26, 2019, 11:36:10 AM
-    Author     : 97798
---%>
+<%@page import="com.bid.dao.FeedbackDao"%>
+<%@page import="com.bid.bean.Feedback"%>
 <%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
-<%@page import="com.bid.dao.ProductDao"%>
-<%@page import="com.bid.bean.Product"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>User DashBoard</title>
+  <title>Admin-Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,34 +25,20 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/userHomeCard.css">
-  <style>
-      .addProduct{
-          color: white; position: absolute;left: 223px;text-decoration: none;
-          
-      }
-      .addProduct:hover{
-          color: rgba(255, 255, 255, 0.75);
-          text-decoration: none;
-      }
-  </style>
 
 </head>
 
 <body id="page-top">
     <%
-       UserLogin us = (UserLogin)session.getAttribute("user_session");
-       if(us == null){
+       UserLogin as = (UserLogin)session.getAttribute("admin_session");
+       if(as == null){
            session.setAttribute("loginMsg", "Please Login First !");
-           response.sendRedirect("login.jsp");
+           response.sendRedirect("adminLogin.jsp");
        }
          %>
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-    <a class="navbar-brand mr-1" href="home.jsp">Bid On</a>
-
-    <a href="addProduct.jsp" class="addProduct">Add Product</a>
-
+    <a class="navbar-brand mr-1" href="dashboard.jsp">Start Bootstrap</a>
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Product . . . ." aria-label="Search" aria-describedby="basic-addon2">
@@ -70,13 +52,12 @@
     <ul class="navbar-nav ml-auto ml-md-0">
       <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <%
-                if(us != null){ %> <%= us.getEmail() %> <%}
-            %>
-            <i class="fas fa-user-circle fa-fw"></i>
+            <%
+                if(as != null){ %> <%= as.getEmail() %> <%}
+            %> <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="logoutProcess.jsp">Logout</a>
+          <a class="dropdown-item" href="adminLogoutProcess.jsp">Logout</a>
         </div>
       </li>
     </ul>
@@ -86,82 +67,110 @@
   <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="home.jsp">
+        <a class="nav-link" href="dashboard.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Product</span>
         </a>
       </li>
-      
+       <li class="nav-item">
+        <a class="nav-link" href="viewUser.jsp">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>User</span></a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Profile</span>
+          <span>Pages</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="myProfile.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My profile</a>
-          <a class="dropdown-item" href="changePassword.jsp">Change Password</a>
+          <h6 class="dropdown-header">Login Screens:</h6>
+          <a class="dropdown-item" href="login.html">Login</a>
+          <a class="dropdown-item" href="register.html">Register</a>
+          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+          <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header">Other Pages:</h6>
+          <a class="dropdown-item" href="404.html">404 Page</a>
+          <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="feedback.jsp">
+        <a class="nav-link" href="viewFeedback.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Feedback</span></a>
       </li>
     </ul>
    <!-- product detail -->
    
-   <%-- main body start --%>
+   
+   
+  <!-- main body start -->
    <div id="content-wrapper">
-
-   <div class="container">
-       
-                   <%  
-                    List<Product> list=ProductDao.getAllRecords();
+     <div class="container-fluid">
+     <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Feedback</li>
+        </ol>
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Product Detail
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+                  
+                  <%  
+                    List<Feedback> list= FeedbackDao.getAllFeedbackOfUser();
                     request.setAttribute("list",list);  
                     int count = 0;
                   %>
-    <div class="row">
-         <%
-            try {
-                    String data = session.getAttribute("msg").toString();
-         %>
-                     <div class="alert alert-danger" role="alert">
-                        <%= data %>
-                   </div>
-         <%         
-                    session.removeAttribute("msg");
-                } catch (Exception e) {
-                }
-         %>
-    </div>
-    <div class="row">
-        <c:forEach items="${list}" var="u">
-            <div class="col-md-3 col-sm-6" style="padding-bottom: 15px;">
-            <div class="product-grid4" style="border: 1px solid black">
-                <div class="product-image4">
-                    <a href="#">
-                        <img class="pic-1" src="../image/product/${u.getFilename()}" height="180" width="200">
-                    </a>
+                <div class="row">
+                         <%
+                            try {
+                                    String data = session.getAttribute("msg").toString();
+                         %>
+                                     <div class="alert alert-danger" role="alert">
+                                        <%= data %>
+                                   </div>
+                         <%         
+                                    session.removeAttribute("msg");
+                                } catch (Exception e) {
+                                }
+                         %>
                 </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">${u.getPname()}</a></h3>
-                    <h3 class="title">Category:<a href="#">${u.getCategory()}</a></h3>
-                    <h3 class="title">Close Date:${u.getDate()}</h3>
-                    <div class="price">
-                     Initial Price:   ${u.getInitialprice()}
-                    </div>
-                    <a class="add-to-cart" href="productDescription.jsp?pid=${u.getPid()}">BID</a>
-                </div>
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Feedback NO</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Description</th>
+                    <th>Feedback Date</th>
+                   </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${list}" var="u"> 
+                  <tr>
+                    <td><%= ++count %></td>
+                    <td>${ u.getEmail() }</td>
+                    <td>${ u.getSubject() }</td>
+                    <td>${ u.getDescription() }</td>
+                    <td>${u.getFeedback_date()}</td>
+                    
+                  </tr>
+                </c:forEach>
+                 <tbody>
+              </table>
             </div>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-        </c:forEach>
-
-        
+      </div>
+      <!-- /.container-fluid -->
     </div>
-</div>
-</div>
-        
-   <!-- main body finisehed -->
+ <!-- main body finisehed -->
               
               
  
@@ -216,4 +225,3 @@
 </body>
 
 </html>
-
