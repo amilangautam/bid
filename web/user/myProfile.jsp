@@ -145,7 +145,7 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
             </ul>
         </div>
         <div class="col-md-6">
-            <strong>User Information</strong><br>
+            <strong>My Profile</strong><br>
             <div class="table-responsive">
             <table class="table table-condensed table-responsive table-user-information">
                 <tbody>
@@ -205,6 +205,17 @@ https://www.bootdey.com/snippets/view/Table-user-information#html
                         </td>
                         <td class="text-primary text-capitalize">
                             <%= u.getRole() %> 
+                        </td>
+                    </tr>
+                    <tr>        
+                        <td>
+                            <strong>
+                                <span class="fa fa-phone text-primary"></span> 
+                                Phone                                                
+                            </strong>
+                        </td>
+                        <td class="text-primary text-capitalize">
+                            <%= u.getMobile() %> 
                         </td>
                     </tr>
                     <tr>        
