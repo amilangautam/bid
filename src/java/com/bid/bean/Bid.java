@@ -12,7 +12,16 @@ package com.bid.bean;
 public class Bid {
   private int bid_id;
   private String bid_price;
-  private String dummy;
+  private String email;
+  private int pid;
+  private String status;
+    private String pname;
+    private String category;
+    private String description;
+    private String initialprice;
+    private String filename;
+    private String date;
+    private String path;
 
     public int getBid_id() {
         return bid_id;
@@ -30,13 +39,89 @@ public class Bid {
         this.bid_price = bid_price;
     }
 
-    public String getDummy() {
-        return dummy;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDummy(String dummy) {
-        this.dummy = dummy;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getInitialprice() {
+        return initialprice;
+    }
+
+    public void setInitialprice(String initialprice) {
+        this.initialprice = initialprice;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+    
+    
+
+    
     
   
   

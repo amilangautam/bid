@@ -46,7 +46,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand mr-1" href="dashboard.jsp">Start Bootstrap</a>
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Product . . . ." aria-label="Search" aria-describedby="basic-addon2">
@@ -86,6 +86,11 @@
         <a class="nav-link" href="viewUser.jsp">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="bid.jsp">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Bid</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -22,6 +22,7 @@
                 font-size: 12px;
             }
         </style>
+        
     </head>
     <body>
         <%
@@ -36,6 +37,15 @@
                    String pid = request.getParameter("pid");
                    Product p = ProductDao.getRecordById(Integer.parseInt(pid));
                  %>
+        <script>
+            function validatePrice() {
+                var x = document.forms["myForm"]["bid_price"].value;
+                if (x <= <%=p.getInitialprice()%>){
+                    alert("Bid amount must be greater than <%=p.getInitialprice()%>");
+                    return false;
+                }
+            }
+        </script>
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
@@ -46,9 +56,12 @@
                     <h5>Bid Deadline :<span><%= p.getDate()%></span></h5>
                     <h5>Product Description:</h5>
                     <p> " <%= p.getDescription()%> "</p>
-                    <form action="bidProcess.jsp" method="post">
+                    <form action="bidProcess.jsp" method="post" name="myForm" onsubmit="return validatePrice()">
+                        
                          <div class="form-group">
-                            <input type="text" class="form-control" onkeypress="isInputNumber(event)"  name="bid_price" placeholder="enter bid price" required="required">
+                             <input type="hidden" name="pid" value="<%= p.getPid()%>">
+                             <input type="hidden" name="email" value="<%if(us != null){ %><%=us.getEmail()%><%}%>">
+                            <input type="text" class="form-control" onkeypress="isInputNumber(event)"  name="bid_price" placeholder="Enter bid amount" required="required">
                             
                             <script>
                                   function isInputNumber(evt){
@@ -58,7 +71,7 @@
                                         }
                                     }
                                  </script>
-                             <span class="bidNote">Note: Your bid amount must be more than minimum bid</span>    
+                             <span class="bidNote">Note: Your bid amount must be greater than <%=p.getInitialprice()%></span>    
                          </div>     
                         
                         <div class="form-group">

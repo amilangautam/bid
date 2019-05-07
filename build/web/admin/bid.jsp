@@ -1,8 +1,7 @@
-<%@page import="com.bid.dao.FeedbackDao"%>
-<%@page import="com.bid.bean.Feedback"%>
 <%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
-
+<%@page import="com.bid.dao.ProductDao"%>
+<%@page import="com.bid.bean.Product"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +76,7 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
       </li>
-      <li class="nav-item">
+       <li class="nav-item">
         <a class="nav-link" href="bid.jsp">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Bid</span></a>
@@ -112,26 +111,20 @@
    <div id="content-wrapper">
      <div class="container-fluid">
      <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
+     <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Feedback</li>
+          <li class="breadcrumb-item active">Bid</li>
         </ol>
-        <div class="card mb-3">
+             <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
             Product Detail
           </div>
           <div class="card-body">
             <div class="table-responsive">
-                  
-                  <%  
-                    List<Feedback> list= FeedbackDao.getAllFeedbackOfUser();
-                    request.setAttribute("list",list);  
-                    int count = 0;
-                  %>
-                <div class="row">
+               <div class="row">
                          <%
                             try {
                                     String data = session.getAttribute("msg").toString();
@@ -148,24 +141,19 @@
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Feedback NO</th>
-                    <th>Email</th>
-                    <th>Subject</th>
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Image</th>
+                    <th>Category</th>
                     <th>Description</th>
-                    <th>Feedback Date</th>
+                    <th>CLose Date</th>
+                    <th>Initial price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                    </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${list}" var="u"> 
-                  <tr>
-                    <td><%= ++count %></td>
-                    <td>${ u.getEmail() }</td>
-                    <td>${ u.getSubject() }</td>
-                    <td>${ u.getDescription() }</td>
-                    <td>${u.getFeedback_date()}</td>
-                    
-                  </tr>
-                </c:forEach>
+                
                  <tbody>
               </table>
             </div>
