@@ -153,6 +153,18 @@
           <div class="card-body">
             <div class="table-responsive">
              <div class="row">
+                 <%
+                            try {
+                                    String data = session.getAttribute("msg").toString();
+                         %>
+                                     <div class="alert alert-danger" role="alert">
+                                        <%= data %>
+                                   </div>
+                         <%         
+                                    session.removeAttribute("msg");
+                                } catch (Exception e) {
+                                }
+                         %>
               </div>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -164,6 +176,7 @@
                     <th>Bid Amount</th>
                     <th>CLose Date</th>
                     <th>Status</th>
+                    <th>Action</th>
                    </tr>
                 </thead>
                 <tbody>
@@ -176,6 +189,7 @@
                     <th>${u.getBid_price()}</th>
                     <th>${u.getDate()}</th>
                     <th>${u.getStatus()}</th>
+                    <th><a href="deleteBidProcess.jsp?bid_id=${u.getBid_id()}" >Delete</a></th>
                   </tr>
                   </c:forEach>
                  <tbody>

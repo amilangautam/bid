@@ -1,3 +1,5 @@
+<%@page import="com.bid.dao.BidDao"%>
+<%@page import="com.bid.bean.Bid"%>
 <%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bid.dao.ProductDao"%>
@@ -108,6 +110,12 @@
    
    
   <!-- main body start -->
+                <%  
+                  
+                    List<Bid> list= BidDao.getBidByEmailByAdmin();
+                    request.setAttribute("list",list);  
+                    int count = 0;
+                 %>
    <div id="content-wrapper">
      <div class="container-fluid">
      <!-- Breadcrumbs-->
@@ -142,18 +150,34 @@
                 <thead>
                   <tr>
                     <th>Product Id</th>
+                    <th>Product</th>
+                    <th>Seller</th>
                     <th>Product Name</th>
-                    <th>Image</th>
                     <th>Category</th>
-                    <th>Description</th>
-                    <th>CLose Date</th>
-                    <th>Initial price</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Initial Price</th>
+                    <th>Close Date</th>
+                    <th>Highest Bid</th>
+                    <th>Bidder</th>
+                    <th>Status</th>
+                    <th>Action</th>
                    </tr>
                 </thead>
                 <tbody>
-                
+                 <c:forEach items="${list}" var="u">
+                     <tr>
+                        <td>${u.getPid()}</td>
+                        <td><img src="../image/product/${u.getFilename()}" height="50" width="70" ></td>
+                        <td>Seller</td>
+                        <td>${u.getPname()}</td>
+                        <td>${u.getCategory()}</td>
+                        <td>${u.getInitialprice()}</td>
+                        <td>${u.getDate()}</td>
+                        <td>${u.getBid_price()}</td>
+                        <td>${u.getEmail()}</td>
+                        <td> <a href="changeStatusOfBidderForm.jsp?bid_id=${u.getBid_id()}">${u.getStatus()}</a> </td>
+                        <td><a href="deleteBidProcess.jsp?bid_id=${u.getBid_id()}" >Delete</a></td>
+                     </tr>
+                    </c:forEach>
                  <tbody>
               </table>
             </div>

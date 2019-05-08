@@ -52,12 +52,13 @@ public class BidDao {
          List<Bid> list = new ArrayList<Bid>();
         try {
             Connection conn = getConnection();
-                PreparedStatement ps = conn.prepareStatement("SELECT b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename from bid b INNER JOIN product p on b.pid = p.pid where email = ?");
+                PreparedStatement ps = conn.prepareStatement("SELECT b.bid_id , b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename from bid b INNER JOIN product p on b.pid = p.pid where email = ?");
                 ps.setString(1,email);
                 ResultSet rs = ps.executeQuery();
                 
                 while(rs.next()){
                 Bid b = new Bid();
+                b.setBid_id(rs.getInt("bid_id"));
                 b.setEmail(rs.getString("email"));
                 b.setBid_price(rs.getString("bid_price"));
                 b.setStatus(rs.getString("status"));
@@ -76,6 +77,79 @@ public class BidDao {
                 }
         return list;
         }
+     public static List <Bid> getBidByEmailByAdmin(){
+         List<Bid> list = new ArrayList<Bid>();
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("SELECT distinct b.bid_id, b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename ,p.pid, p.category from bid b INNER JOIN product p on b.pid = p.pid order by pid desc");
+               
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                Bid b = new Bid();
+                b.setBid_id(rs.getInt("bid_id"));
+                b.setEmail(rs.getString("email"));
+                b.setBid_price(rs.getString("bid_price"));
+                b.setStatus(rs.getString("status"));
+                b.setPname(rs.getString("pname"));
+                b.setInitialprice(rs.getString("initialprice"));
+                b.setDate(rs.getString("date"));
+                b.setFilename(rs.getString("filename"));
+                b.setPid(rs.getInt("pid"));
+                b.setCategory(rs.getString("category"));
+                
+                
+                
+                
+                list.add(b);
+                } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return list;
+        }
+    public static int deleteBid(Bid b){  
+    int status=0;  
+    try{  
+        Connection conn=getConnection();  
+        PreparedStatement ps=conn.prepareStatement("delete from bid where bid_id=?");  
+        ps.setInt(1, b.getBid_id());  
+        status=ps.executeUpdate();  
+    }catch(Exception e){
+        System.out.println(e);}  
+  
+    return status;  
+   }
+    public static Bid getRecordByBidId(int bid_id){
+        Bid b= null;
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("select bid_id from bid where bid_id = ?");
+                ps.setInt(1,bid_id);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                b = new Bid();
+                b.setBid_id(rs.getInt("bid_id"));
+               } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return b;
+        }
+    public static int updateStatus(Bid b){  
+    int status=0;  
+    try{  
+        Connection conn=getConnection();  
+        PreparedStatement ps= null;
+        String updateQuery = ("update bid set status =?  where bid_id=? ");  
+        ps = conn.prepareStatement(updateQuery);
+            ps.setString(1,b.getStatus());
+            ps.setInt(2,b.getBid_id());
+            status=ps.executeUpdate();  
+    }catch(Exception e){System.out.println(e);}  
+    return status;  
+} 
 
      
 
