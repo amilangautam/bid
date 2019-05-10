@@ -179,7 +179,26 @@ public class BidDao {
         return list;
         }
 
-     
+        public static List <Bid> getMyProductBid(int pid){
+        List<Bid> list = new ArrayList<Bid>();
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("select * from bid where pid = ?");
+                ps.setInt(1,pid);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                Bid b = new Bid();
+                b.setEmail(rs.getString("email"));
+                b.setBid_price(rs.getString("bid_price"));
+                b.setStatus(rs.getString("status"));
+                list.add(b);
+                    } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return list;
+        }
 
     
 }

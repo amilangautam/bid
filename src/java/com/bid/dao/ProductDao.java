@@ -94,6 +94,34 @@ public class ProductDao {
         }
         return list;
     }
+    public static List <Product> getAllProductRecordsByAdmins(){
+        List<Product> list = new ArrayList<Product>();
+        try {
+                Connection conn = getConnection();
+                
+                PreparedStatement ps = conn.prepareStatement("select * from product");
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                Product p = new Product();
+               
+                p.setPid(rs.getInt("pid"));
+                p.setEmail(rs.getString("email"));
+                p.setPname(rs.getString("pname"));
+                p.setPath(rs.getString("path"));
+                p.setFilename(rs.getString("filename"));
+                p.setCategory(rs.getString("category"));
+                p.setDescription(rs.getString("description"));
+                p.setInitialprice(rs.getString("initialprice"));
+                p.setDate(rs.getString("date"));
+                
+                
+                list.add(p);
+                }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
         
          public static Product getRecordById(int pid){
         Product p= null;

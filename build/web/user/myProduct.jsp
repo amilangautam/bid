@@ -143,7 +143,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            My Bid
+            My Product
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -171,6 +171,7 @@
                     <th>Description</th>
                     <th>CLose Date</th>
                     <th>Initial price</th>
+                    <th>View Bid</th>
                     <th>Edit</th>
                     <th>Delete</th>
                    </tr>
@@ -185,6 +186,7 @@
                     <td>${p.getDescription()}</td>
                     <td>${p.getDate()}</td>
                     <td>${p.getInitialprice()}</td>
+                    <td><a href="viewMyProductBid.jsp?pid=${p.getPid()}">view Bid</a></td>
                     <td><a href="editProduct.jsp?pid=${p.getPid()}">Edit</a></td>  
                     <td><a href="deleteProductProcess.jsp?pid=${p.getPid()}">Delete</a> </td>
                   </tr>

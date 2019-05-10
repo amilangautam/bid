@@ -114,7 +114,7 @@
           <div class="card-body">
             <div class="table-responsive">
                   <%  
-                    List<Product> list=ProductDao.getAllRecords();
+                    List<Product> list=ProductDao.getAllProductRecordsByAdmins();
                     request.setAttribute("list",list);  
                     int count = 0;
                   %>

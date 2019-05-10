@@ -142,7 +142,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            My Bid
+            Bid Winner
           </div>
           <div class="card-body">
             <div class="table-responsive">
