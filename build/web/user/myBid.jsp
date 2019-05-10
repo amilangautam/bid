@@ -2,13 +2,6 @@
     Document   : home
     Created on : Mar 26, 2019, 11:36:10 AM
     Author     : 97798
-                    <th>SN.</th>
-                    <th>Product Name</th>
-                    <th>Image</th>
-                    <th>Initial Amount</th>
-                    <th>Bid Amount</th>
-                    <th>CLose Date</th>
-                    <th>Status</th>
 --%>
 <%@page import="com.bid.dao.BidDao"%>
 <%@page import="com.bid.bean.Bid"%>
@@ -119,6 +112,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="myBid.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My Bid</a>
+          <a class="dropdown-item" href="bidWinner.jsp">Bid Winner</a>
+          <a class="dropdown-item" href="myProduct.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My product</a>
         </div>
       </li>
       <li class="nav-item">

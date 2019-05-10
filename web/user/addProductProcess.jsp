@@ -71,9 +71,11 @@
                         } else {
                             oService.addProduct(info);
                         }
+                } else if (item.getFieldName().equalsIgnoreCase("email")) {
+                    info.setEmail(item.getString());
                 } else if (item.getFieldName().equalsIgnoreCase("pname")) {
                     info.setPname(item.getString());
-                } else if (item.getFieldName().equalsIgnoreCase("category")) {
+                }else if (item.getFieldName().equalsIgnoreCase("category")) {
                     info.setCategory(item.getString());
                 }else if (item.getFieldName().equalsIgnoreCase("description")) {
                     info.setDescription(item.getString());

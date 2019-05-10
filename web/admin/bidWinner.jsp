@@ -1,6 +1,9 @@
-<%@page import="java.util.List"%>
-<%@page import="com.bid.dao.UserLoginDao"%>
+<%@page import="com.bid.dao.BidDao"%>
+<%@page import="com.bid.bean.Bid"%>
 <%@page import="com.bid.bean.UserLogin"%>
+<%@page import="java.util.List"%>
+<%@page import="com.bid.dao.ProductDao"%>
+<%@page import="com.bid.bean.Product"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>View User</title>
+  <title>Admin-Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,15 +26,6 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
-  <style>
-      .addAdmin{
-          position: absolute;
-          left: 987px;
-      }
-      .addAdmin:hover{
-          text-decoration: none;
-      }
-  </style>
 
 </head>
 
@@ -45,7 +39,6 @@
          %>
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
     <a class="navbar-brand mr-1" href="dashboard.jsp">Start Bootstrap</a>
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
@@ -62,27 +55,25 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%
                 if(as != null){ %> <%= as.getEmail() %> <%}
-            %>
-            <i class="fas fa-user-circle fa-fw"></i>
+            %> <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="adminLogoutProcess.jsp">Logout</a>
         </div>
       </li>
     </ul>
-
   </nav>
 
   <div id="wrapper">
-<!-- Sidebar -->
+  <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="dashboard.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Product</span>
         </a>
       </li>
-      <li class="nav-item active">
+       <li class="nav-item">
         <a class="nav-link" href="viewUser.jsp">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>User</span></a>
@@ -97,37 +88,39 @@
           <a class="dropdown-item" href="bidWinner.jsp">Bid Winner</a>
         </div>
       </li>
-      
       <li class="nav-item">
         <a class="nav-link" href="viewFeedback.jsp">
           <i class="fas fa-fw fa-table"></i>
           <span>Feedback</span></a>
       </li>
     </ul>
-<!-- side bar finished-->
-
-
-
-<!-- main body start-->
+   <!-- product detail -->
+   
+   
+   
+  <!-- main body start -->
+                <%  
+                  List<Bid> list= BidDao.getBidWinner();
+                    request.setAttribute("list",list);  
+                    int count = 0;
+                 %>
    <div id="content-wrapper">
      <div class="container-fluid">
      <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
+     <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">User</li>
+          <li class="breadcrumb-item active">Bid Winner</li>
         </ol>
-        <div class="card mb-3">
+             <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            User Detail
-            <a class="addAdmin" href="addAdmin.jsp">Add Admin</a>
+            Bid Winner Detail
           </div>
           <div class="card-body">
-              
             <div class="table-responsive">
-                <div class="row">
+               <div class="row">
                          <%
                             try {
                                     String data = session.getAttribute("msg").toString();
@@ -141,40 +134,28 @@
                                 }
                          %>
                 </div>
-              <% List <UserLogin> list = UserLoginDao.getAllRecordsOfUser();
-                 request.setAttribute("list",list); 
-              %>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>User Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>Role</th>
-                    <th>Registered Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Bid Id</th>
+                    <th>Seller</th>
+                    <th>Item Name</th>
+                    <th>Product</th>
+                    <th>Bid Amount</th>
+                    <th>Winner</th>
                    </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${list}" var="u"> 
-                  <tr>
-                    <td>${u.getUser_id()}</td>
-                    <td>${u.getFirstname()}</td>
-                    <td>${u.getLastname()}</td>
-                    <td>${u.getAddress() }</td>
-                    <td>${u.getEmail()}</td>
-                    <td>${u.getMobile()}</td>
-                    <td>${u.getRole()}</td>
-                    <td>${u.getRegistered_date()}</td>
-                    <td><a href="editUser.jsp?user_id=${u.getUser_id()}">Edit</a> </td> 
-                    <td><a href="deleteUserProcess.jsp?user_id=${u.getUser_id()}">Delete</a> </td>
-                    
-                  </tr>
-                </c:forEach>
+                 <c:forEach items="${list}" var="u">
+                     <tr>
+                        <td>${u.getBid_id()}</td>
+                        <td>seller</td>
+                        <td>${u.getPname()}</td>
+                        <td><img src="../image/product/${u.getFilename()}" height="50" width="70" ></td>
+                        <td>${u.getBid_price()}</td>
+                        <td>${u.getEmail()}</td>
+                      </tr>
+                    </c:forEach>
                  <tbody>
               </table>
             </div>
@@ -184,29 +165,29 @@
       </div>
       <!-- /.container-fluid -->
     </div>
-<!-- main body finished-->
-
-
-
-
-
-
-  </div>
+ <!-- main body finisehed -->
+              
+              
+ 
+ <!-- /.content-wrapper -->
+ </div>
   <!-- /#wrapper -->
+  
+  
+  
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
+ <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">Ã—</span>
+            <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -217,7 +198,6 @@
       </div>
     </div>
   </div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -227,14 +207,15 @@
 
   <!-- Page level plugin JavaScript-->
   <script src="../vendor/chart.js/Chart.min.js"></script>
+  <script src="..vendor/datatables/jquery.dataTables.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="javascript/sb-admin.min.js"></script>
 
   <!-- Demo scripts for this page-->
+  <script src="../javascript/demo/datatables-demo.js"></script>
   <script src="../javascript/demo/chart-area-demo.js"></script>
-  <script src="../javascript/demo/chart-bar-demo.js"></script>
-  <script src="../javascript/demo/chart-pie-demo.js"></script>
 
 </body>
 

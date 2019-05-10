@@ -18,6 +18,8 @@ public class Product {
     private String filename;
     private String date;
     private String path;
+    private String todayDate;
+    private String email;
 
     public int getPid() {
         return pid;
@@ -81,6 +83,22 @@ public class Product {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getTodayDate() {
+        return todayDate;
+    }
+
+    public void setTodayDate(String todayDate) {
+        this.todayDate = todayDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     

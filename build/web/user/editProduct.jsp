@@ -1,13 +1,13 @@
 <%-- 
-    Document   : addProduct
-    Created on : Mar 28, 2019, 9:24:18 AM
+    Document   : editProduct
+    Created on : Apr 5, 2019, 1:10:18 PM
     Author     : 97798
 --%>
 
-<%@page import="com.bid.bean.UserLogin"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.TimeZone"%>
+<%@page import="com.bid.bean.Product,com.bid.dao.ProductDao,java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,25 +16,23 @@
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/user_register.css">
         <script src="../bootstrap/css/bootstrap.min.js"></script>
-        <title>Add Product</title>
+        <title>Update Product</title>
     </head>
     <body>
-        <%
-       UserLogin us = (UserLogin)session.getAttribute("user_session");
-       if(us == null){
-           session.setAttribute("loginMsg", "Please Login First !");
-           response.sendRedirect("login.jsp");
-       }
+        <% 
+           String pid = request.getParameter("pid");
+           Product p = ProductDao.getRecordById(Integer.parseInt(pid));
+            
          %>
         <div class="signup-form">
-          <form action="addProductProcess.jsp" method="post" enctype="multipart/form-data">
-                        <h2>Add Product</h2>
-                <input type="hidden" name="email" value="<%if(us != null){ %><%=us.getEmail()%><%}%>">
+            <form action="editProductProcess.jsp" method="post">
+                        <h2>Update Product</h2>
+                        <input type="hidden" name="pid" value="<%= p.getPid() %>">       
                 <div class="form-group">
-                        <input type="text" class="form-control" name="pname" placeholder="Product Name" required="required">
+                    Product Name:<input type="text" class="form-control" name="pname" value="<%= p.getPname() %>" placeholder="Product Name" required="required">
                 </div>
                 <div class="form-group">
-                Product Category:<select class="form-control" name="category">
+                    Product Category:<select class="form-control" value="<%= p.getCategory() %>" name="category">
                             <option value="Books">Books</option>
                             <option value="Electronoics">Electronics</option>
                             <option value="Beauty">Beauty</option>
@@ -44,10 +42,10 @@
                          </select>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" cols="50" placeholder="Product Description" name="description"></textarea>
+                  Description:  <textarea class="form-control" rows="5" cols="50"  placeholder="Product Description" name="description"> <%= p.getDescription() %></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control"  name="initialprice" onkeypress="isInputNumber(event)" placeholder="Initial Price" required="required">
+                 Initial Price:  <input type="text" class="form-control" value="<%= p.getInitialprice() %>" name="initialprice" onkeypress="isInputNumber(event)" placeholder="Initial Price" required="required">
                     <script>
                         function isInputNumber(evt){
                             var ch = String.fromCharCode(evt.which);
@@ -58,21 +56,15 @@
                     </script>
                  </div>
                 <div class="form-group">
-                         <%
-                          TimeZone.setDefault(TimeZone.getTimeZone("Asia/Qatar"));
-                          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-                          Date today4 = new Date();
-                          String date4 = format.format(today4);
-                        %>
-                 Bid Deadline: <input type="text" value="<%=date4 %>" class="form-control" name="date" required="required">
+                    Bid Deadline: <input type="text" value="<%= p.getDate() %>" class="form-control" name="date" required="required">
                  </div> 
                  <div class="form-group">
-                    <input type="file" class="form-control"  name="filename" placeholder="product Image" required="required">
+                   Product Image:<br>
+                    <img src="../image/product/<%= p.getFilename() %>" height="100" width="140" >
                  </div>
-                
+                   
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-block">Add Product</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Update Product</button>
                 </div>
             </form>
                

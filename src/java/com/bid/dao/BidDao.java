@@ -52,7 +52,7 @@ public class BidDao {
          List<Bid> list = new ArrayList<Bid>();
         try {
             Connection conn = getConnection();
-                PreparedStatement ps = conn.prepareStatement("SELECT b.bid_id , b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename from bid b INNER JOIN product p on b.pid = p.pid where email = ?");
+                PreparedStatement ps = conn.prepareStatement("SELECT b.bid_id , b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename from bid b INNER JOIN product p on b.pid = p.pid where b.email = ?");
                 ps.setString(1,email);
                 ResultSet rs = ps.executeQuery();
                 
@@ -81,7 +81,7 @@ public class BidDao {
          List<Bid> list = new ArrayList<Bid>();
         try {
             Connection conn = getConnection();
-                PreparedStatement ps = conn.prepareStatement("SELECT distinct b.bid_id, b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename ,p.pid, p.category from bid b INNER JOIN product p on b.pid = p.pid order by pid desc");
+                PreparedStatement ps = conn.prepareStatement("SELECT distinct b.bid_id, b.email, b.bid_price , b.status , p.pname , p.initialprice , p.date , p.filename ,p.pid, p.category from bid b INNER JOIN product p on b.pid = p.pid order by pid asc , bid_price desc  ");
                
                 ResultSet rs = ps.executeQuery();
                 
@@ -150,6 +150,34 @@ public class BidDao {
     }catch(Exception e){System.out.println(e);}  
     return status;  
 } 
+         public static List <Bid> getBidWinner(){
+         List<Bid> list = new ArrayList<Bid>();
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("SELECT distinct b.bid_id, b.email, b.bid_price , b.status , p.pname , p.date , p.filename , p.email from bid b INNER JOIN product p on b.pid = p.pid where status= 'winner' ");
+               
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                Bid b = new Bid();
+                b.setBid_id(rs.getInt("bid_id"));
+                b.setEmail(rs.getString("email"));
+                b.setBid_price(rs.getString("bid_price"));
+                b.setStatus(rs.getString("status"));
+                b.setPname(rs.getString("pname"));
+                b.setDate(rs.getString("date"));
+                b.setFilename(rs.getString("filename"));
+                
+                
+                
+                
+                list.add(b);
+                } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return list;
+        }
 
      
 

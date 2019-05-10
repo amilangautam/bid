@@ -27,9 +27,9 @@
        }
          %>
         <div class="signup-form">
-            <form action="addProductProcess.jsp" method="post" enctype="multipart/form-data">
+          <form action="addProductProcess.jsp" method="post" enctype="multipart/form-data">
                         <h2>Add Product</h2>
-                        
+                <input type="hidden" name="email" value="<%if(us != null){ %><%=us.getEmail()%><%}%>">
                 <div class="form-group">
                         <input type="text" class="form-control" name="pname" placeholder="Product Name" required="required">
                 </div>

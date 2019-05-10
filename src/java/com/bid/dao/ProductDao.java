@@ -10,8 +10,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  *
@@ -36,16 +39,17 @@ public class ProductDao {
         int status = 0;
         try {
             Connection conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement("insert into product (pname , category  , description, initialprice, date ,filename,path ) values(?,?,?,?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("insert into product ( email ,pname , category  , description, initialprice, date ,filename, path ) values(?,?,?,?,?,?,?,?)");
             
             //ps.setString(1,b.getEmail());
-            ps.setString(1, p.getPname());
-            ps.setString(2, p.getCategory());
-            ps.setString(3, p.getDescription());
-            ps.setString(4, p.getInitialprice());
-            ps.setString(5, p.getDate());
-            ps.setString(6, p.getFilename());
-            ps.setString(7, p.getPath());
+            ps.setString(1, p.getEmail());
+            ps.setString(2, p.getPname());
+            ps.setString(3, p.getCategory());
+            ps.setString(4, p.getDescription());
+            ps.setString(5, p.getInitialprice());
+            ps.setString(6, p.getDate());
+            ps.setString(7, p.getFilename());
+            ps.setString(8, p.getPath());
              
             status = ps.executeUpdate();
                  
@@ -63,12 +67,17 @@ public class ProductDao {
         List<Product> list = new ArrayList<Product>();
         try {
                 Connection conn = getConnection();
-                PreparedStatement ps = conn.prepareStatement("select * from product");
+                TimeZone.setDefault(TimeZone.getTimeZone("Asia/Qatar"));
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date today4 = new Date();
+                String todayDate = format.format(today4);
+                PreparedStatement ps = conn.prepareStatement("select * from product where date >= '"+todayDate+"' ");
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                 Product p = new Product();
                
                 p.setPid(rs.getInt("pid"));
+                p.setEmail(rs.getString("email"));
                 p.setPname(rs.getString("pname"));
                 p.setPath(rs.getString("path"));
                 p.setFilename(rs.getString("filename"));
@@ -147,8 +156,33 @@ public class ProductDao {
     }catch(Exception e){System.out.println(e);}  
     return status;  
 } 
+  //update product finished 
     
+ 
+     public static List <Product> getMyProductDetails(String email){
+         List<Product> list = new ArrayList<Product>();
+        try {
+            Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement("select * from product where email = ?");
+                ps.setString(1,email);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt("pid"));
+                p.setPname(rs.getString("pname"));
+                p.setFilename(rs.getString("filename"));
+                p.setCategory(rs.getString("category"));
+                p.setDescription(rs.getString("description"));
+                p.setInitialprice(rs.getString("initialprice"));
+                p.setDate(rs.getString("date"));
+               
+                list.add(p);
+                } 
+        }catch (Exception e) {
+                System.out.println(e);
+                }
+        return list;
+        }
     
-    
-   //update product finished 
 }

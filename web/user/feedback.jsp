@@ -109,6 +109,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="myBid.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My Bid</a>
+          <a class="dropdown-item" href="bidWinner.jsp">Bid Winner</a>
+          <a class="dropdown-item" href="myProduct.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">My product</a>
         </div>
       </li>
       <li class="nav-item">
