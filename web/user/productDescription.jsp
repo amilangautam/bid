@@ -60,6 +60,8 @@
                         
                          <div class="form-group">
                              <input type="hidden" name="pid" value="<%= p.getPid()%>">
+                             <input type="hidden" name="productEmail" value="<%= p.getEmail()%>">
+                             <input type="hidden" name="userEmail" value="<%if(us != null){ %><%=us.getEmail()%><%}%>">
                              <input type="hidden" name="email" value="<%if(us != null){ %><%=us.getEmail()%><%}%>">
                             <input type="text" class="form-control" onkeypress="isInputNumber(event)"  name="bid_price" placeholder="Enter bid amount" required="required">
                             

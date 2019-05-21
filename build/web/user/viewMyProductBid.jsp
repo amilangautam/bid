@@ -48,10 +48,10 @@
             int count =0;
         %>
          <div class="row">
-             <div class="col-md-4">
+             <div class="col-md-2">
                  <a href="myProduct.jsp?email=<%if(us != null){ %><%= us.getEmail() %><%}%>">Back</a>
              </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style=" position: absolute; top:150px;">
                     <h1>Total Bidder</h1>
                 <thead>

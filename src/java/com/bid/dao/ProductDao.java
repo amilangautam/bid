@@ -141,6 +141,7 @@ public class ProductDao {
                 p.setDescription(rs.getString("description"));
                 p.setInitialprice(rs.getString("initialprice"));
                 p.setDate(rs.getString("date"));
+                p.setEmail(rs.getString("email"));
                 
                
                     } 

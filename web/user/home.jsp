@@ -57,14 +57,10 @@
 
     <a href="addProduct.jsp" class="addProduct">Add Product</a>
 
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" action="" method="get">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Product . . . ." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+          <input type="text" name="searchProduct" class="form-control" placeholder="Search Product . . . ." aria-label="Search" aria-describedby="basic-addon2">
+        
       </div>
    </form>
     <ul class="navbar-nav ml-auto ml-md-0">
@@ -126,7 +122,8 @@
 
    <div class="container">
        
-                   <%  
+                   <% 
+                    String email = request.getParameter("searchProduct");   
                     List<Product> list=ProductDao.getAllRecords();
                     request.setAttribute("list",list);  
                     int count = 0;
